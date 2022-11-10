@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->tinyText('description');
 
-            $table->string('published');
+            $table->unsignedSmallInteger('published');
 
             $table->unsignedInteger('number_of_page');
 
@@ -44,7 +44,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('set null');
 
-            $table->tinyInteger('is_new')->default(0);
+            $table->boolean('is_new')->default(0);
 
             $table->timestamps();
         });

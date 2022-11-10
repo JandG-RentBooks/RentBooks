@@ -12,6 +12,10 @@ class Lending extends Model
     protected $table = 'lendings';
 
     protected $fillable = [
-        'name'
+        'user_id',
+        'shipping_token',
+        'is_active',
+        'created_by',
+        'updated_by',
     ];
 }

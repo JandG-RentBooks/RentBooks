@@ -12,6 +12,9 @@ class ShippingAddress extends Model
     protected $table = 'shipping_addresses';
 
     protected $fillable = [
-        'name'
+        'user_id',
+        'zip_code',
+        'city',
+        'address',
     ];
 }

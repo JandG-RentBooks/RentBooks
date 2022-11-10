@@ -29,6 +29,7 @@ class User extends Authenticatable
         'phone_number',
         'subscription_type_id',
         'active_shipping_address_id',
+        'last_payment_date',
         'is_active',
     ];
 

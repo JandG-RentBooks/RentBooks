@@ -12,6 +12,7 @@ class BookAuthor extends Model
     protected $table = 'book_author';
 
     protected $fillable = [
-        'name'
+        'book_id',
+        'author_id',
     ];
 }
