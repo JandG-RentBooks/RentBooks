@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
@@ -13,12 +12,11 @@ class BaseController extends Controller
      *
      * @return JsonResponse
      */
-    public function sendResponse($result, $message): JsonResponse
+    public function sendResponse($result): JsonResponse
     {
         $response = [
             'success' => true,
             'data'    => $result,
-            'message' => $message,
         ];
 
 

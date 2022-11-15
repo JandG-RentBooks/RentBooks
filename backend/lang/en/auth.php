@@ -1,20 +1,45 @@
 <?php
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
-
-    'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-
+    'btn_forgotten_password'         => 'Forgotten password',
+    'btn_password_confirm_submit'    => 'Confirm password',
+    'btn_registration'               => 'Sign up',
+    'btn_reset_password_submit'      => 'Change password',
+    'btn_send_email_submit'          => 'Send new password via e-mail',
+    'btn_sign_in'                    => 'Login',
+    'btn_verification'               => 'Verification',
+    'captcha'                        => 'Captcha error. The system can not verify the user.',
+    'code'                           => 'One time security code',
+    'failed'                         => 'No user found with the given data.',
+    'inactive'                       => 'This user is inactive. Please contact your system administrator.',
+    'label_auth_code'                => 'Security code',
+    'label_email'                    => 'E-mail',
+    'label_forgotten_password'       => 'Forgotten password',
+    'label_name'                     => 'Name',
+    'label_new_user'                 => 'New user',
+    'label_old_user'                 => 'Already signed up',
+    'label_password'                 => 'Password',
+    'label_password_confirm'         => 'Confirm password',
+    'label_register'                 => 'Sign up',
+    'label_remember_me'              => 'Remember me',
+    'label_sign_in'                  => 'Log in',
+    'label_username'                 => 'Username',
+    'link_back_to_login'             => 'Back to login',
+    'link_logout'                    => 'Logout',
+    'locked_out'                     => 'User has been locked out due to too many login attempts. Please contact your system administrator.',
+    'msg_registration_confirmation'  => 'Registration successfully completed. We will inform you about the next steps via the given e-mail address.',
+    'password'                       => 'The provided password is incorrect.',
+    'password_history_error'         => 'Your new password may not be the same as your last 5 passwords.',
+    'throttle'                       => 'Too many login attempts. Please try again in :seconds seconds.',
+    'title_confirm'                  => 'Confirm password',
+    'title_email'                    => 'Forgotten password',
+    'title_login'                    => 'Login',
+    'title_reset'                    => 'Set new password',
+    'tow_factor_token_expired'       => 'The one time security code has expired. Please try again.',
+    'two_factor_code_invalid'        => 'The one time security code is invalid.',
+    'two_factor_email_code_text_1'   => 'Your security code for your current login: ',
+    'two_factor_email_code_text_2'   => 'The code can be used within the next 10 minutes.',
+    'two_factor_email_code_text_3'   => 'If you haven\'t requested this login, please forward the current e-mail to support.hu@apfm-systems.com for further investigations.',
+    'two_factor_message'             => 'The security code has been sent to the e-mail address you signed up with.',
+    'two_factor_token_email_subject' => 'One time security code',
 ];

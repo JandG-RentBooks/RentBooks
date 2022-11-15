@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Lending;
+use App\Http\Controllers\Controller;
+use App\Models\Author;
 use Illuminate\Http\Request;
 
-class LendingController extends Controller
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class LendingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Lending  $lending
+     * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function show(Lending $lending)
+    public function show(Author $author)
     {
         //
     }
@@ -52,10 +53,10 @@ class LendingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Lending  $lending
+     * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lending $lending)
+    public function edit(Author $author)
     {
         //
     }
@@ -64,10 +65,10 @@ class LendingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Lending  $lending
+     * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lending $lending)
+    public function update(Request $request, Author $author)
     {
         //
     }
@@ -75,10 +76,10 @@ class LendingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Lending  $lending
+     * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lending $lending)
+    public function destroy(Author $author)
     {
         //
     }

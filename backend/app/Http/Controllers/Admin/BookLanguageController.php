@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Category;
+use App\Http\Controllers\Controller;
+use App\Models\BookLanguage;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class BookLanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\BookLanguage  $bookLanguage
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(BookLanguage $bookLanguage)
     {
         //
     }
@@ -52,10 +53,10 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\BookLanguage  $bookLanguage
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(BookLanguage $bookLanguage)
     {
         //
     }
@@ -64,10 +65,10 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\BookLanguage  $bookLanguage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, BookLanguage $bookLanguage)
     {
         //
     }
@@ -75,10 +76,10 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\BookLanguage  $bookLanguage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(BookLanguage $bookLanguage)
     {
         //
     }

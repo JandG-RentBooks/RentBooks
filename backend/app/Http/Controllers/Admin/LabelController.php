@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\ShippingAddress;
+use App\Http\Controllers\Controller;
+use App\Models\Label;
 use Illuminate\Http\Request;
 
-class ShippingAddressController extends Controller
+class LabelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class ShippingAddressController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ShippingAddress  $shippingAddress
+     * @param  \App\Models\Label  $label
      * @return \Illuminate\Http\Response
      */
-    public function show(ShippingAddress $shippingAddress)
+    public function show(Label $label)
     {
         //
     }
@@ -52,10 +53,10 @@ class ShippingAddressController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ShippingAddress  $shippingAddress
+     * @param  \App\Models\Label  $label
      * @return \Illuminate\Http\Response
      */
-    public function edit(ShippingAddress $shippingAddress)
+    public function edit(Label $label)
     {
         //
     }
@@ -64,10 +65,10 @@ class ShippingAddressController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ShippingAddress  $shippingAddress
+     * @param  \App\Models\Label  $label
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ShippingAddress $shippingAddress)
+    public function update(Request $request, Label $label)
     {
         //
     }
@@ -75,10 +76,10 @@ class ShippingAddressController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ShippingAddress  $shippingAddress
+     * @param  \App\Models\Label  $label
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ShippingAddress $shippingAddress)
+    public function destroy(Label $label)
     {
         //
     }

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Wishlist;
+use App\Http\Controllers\Controller;
+use App\Models\Book;
 use Illuminate\Http\Request;
 
-class WishlistController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class WishlistController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Wishlist  $wishlist
+     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Wishlist $wishlist)
+    public function show(Book $book)
     {
         //
     }
@@ -52,10 +53,10 @@ class WishlistController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Wishlist  $wishlist
+     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Wishlist $wishlist)
+    public function edit(Book $book)
     {
         //
     }
@@ -64,10 +65,10 @@ class WishlistController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Wishlist  $wishlist
+     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Wishlist $wishlist)
+    public function update(Request $request, Book $book)
     {
         //
     }
@@ -75,10 +76,10 @@ class WishlistController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Wishlist  $wishlist
+     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Wishlist $wishlist)
+    public function destroy(Book $book)
     {
         //
     }

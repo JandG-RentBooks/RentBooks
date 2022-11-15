@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -24,7 +25,19 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        // Az admin felületet csak az adminok láthatják.
+        Gate::define('accessAdmin', function ($user) {
+            return $user->hasRole('admin');
+        });
 
-        //
+        Gate::define('accessEmployee', function ($user) {
+            return $user->hasRole('employee') || $user->hasRole('admin');
+        });
+
+        Gate::define('accessUser', function ($user) {
+            return $user->hasRole('user');
+        });
+
+
     }
 }

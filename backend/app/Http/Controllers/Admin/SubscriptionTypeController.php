@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\CoverType;
+use App\Http\Controllers\Controller;
+use App\Models\SubscriptionType;
 use Illuminate\Http\Request;
 
-class CoverTypeController extends Controller
+class SubscriptionTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class CoverTypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CoverType  $coverType
+     * @param  \App\Models\SubscriptionType  $subscriptionType
      * @return \Illuminate\Http\Response
      */
-    public function show(CoverType $coverType)
+    public function show(SubscriptionType $subscriptionType)
     {
         //
     }
@@ -52,10 +53,10 @@ class CoverTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CoverType  $coverType
+     * @param  \App\Models\SubscriptionType  $subscriptionType
      * @return \Illuminate\Http\Response
      */
-    public function edit(CoverType $coverType)
+    public function edit(SubscriptionType $subscriptionType)
     {
         //
     }
@@ -64,10 +65,10 @@ class CoverTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CoverType  $coverType
+     * @param  \App\Models\SubscriptionType  $subscriptionType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CoverType $coverType)
+    public function update(Request $request, SubscriptionType $subscriptionType)
     {
         //
     }
@@ -75,10 +76,10 @@ class CoverTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CoverType  $coverType
+     * @param  \App\Models\SubscriptionType  $subscriptionType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CoverType $coverType)
+    public function destroy(SubscriptionType $subscriptionType)
     {
         //
     }
