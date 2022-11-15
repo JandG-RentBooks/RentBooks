@@ -19,6 +19,7 @@ class Book extends Model
         'isbn_code',
         'in_stock',
         'available',
+        'language_id',
         'cover_type_id',
         'file_id',
         'is_new',

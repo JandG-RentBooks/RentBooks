@@ -30,6 +30,13 @@ return new class extends Migration
 
             $table->unsignedInteger('available');
 
+            $table->foreignId('language_id')
+                ->nullable()
+                ->references('id')
+                ->on('languages')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+
             $table->foreignId('cover_type_id')
                 ->nullable()
                 ->references('id')

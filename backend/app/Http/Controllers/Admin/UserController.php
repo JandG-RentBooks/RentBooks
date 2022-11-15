@@ -20,7 +20,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::with('subscription_type')->with('active_shipping_address')->paginate(20);
+        // Todo A filtert még ki kell dolgozni
+
+        $user = User::with('subscription_type')
+            ->with('active_shipping_address')
+            ->with('roles')
+            ->paginate(20);
 
         return response()->json($user);
     }

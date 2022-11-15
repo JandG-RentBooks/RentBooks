@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\BookLanguage;
+use App\Models\Language;
 use Illuminate\Http\Request;
 
-class BookLanguageController extends Controller
+class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class BookLanguageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BookLanguage  $bookLanguage
+     * @param  \App\Models\Language  $bookLanguage
      * @return \Illuminate\Http\Response
      */
-    public function show(BookLanguage $bookLanguage)
+    public function show(Language $bookLanguage)
     {
         //
     }
@@ -53,10 +53,10 @@ class BookLanguageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\BookLanguage  $bookLanguage
+     * @param  \App\Models\Language  $bookLanguage
      * @return \Illuminate\Http\Response
      */
-    public function edit(BookLanguage $bookLanguage)
+    public function edit(Language $bookLanguage)
     {
         //
     }
@@ -65,10 +65,10 @@ class BookLanguageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BookLanguage  $bookLanguage
+     * @param  \App\Models\Language  $bookLanguage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BookLanguage $bookLanguage)
+    public function update(Request $request, Language $bookLanguage)
     {
         //
     }
@@ -76,10 +76,10 @@ class BookLanguageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BookLanguage  $bookLanguage
+     * @param  \App\Models\Language  $bookLanguage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BookLanguage $bookLanguage)
+    public function destroy(Language $bookLanguage)
     {
         //
     }

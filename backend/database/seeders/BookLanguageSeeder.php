@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\BookLanguage;
+use App\Models\Language;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,19 +15,19 @@ class BookLanguageSeeder extends Seeder
      */
     public function run()
     {
-        BookLanguage::create([
+        Language::create([
             'name' => 'magyar',
         ]);
 
-        BookLanguage::create([
+        Language::create([
             'name' => 'angol',
         ]);
 
-        BookLanguage::create([
+        Language::create([
             'name' => 'német',
         ]);
 
-        BookLanguage::create([
+        Language::create([
             'name' => 'spanyolol',
         ]);
     }
