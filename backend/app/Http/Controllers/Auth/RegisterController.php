@@ -29,7 +29,7 @@ class RegisterController extends BaseController
             'phone_number' => 'nullable|max:255',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
@@ -41,10 +41,10 @@ class RegisterController extends BaseController
         $user = User::create($input);
         //Szerepkör hozzáadása
         $user->user_roles()->create([
-            'role_id'         => 2
+            'role_id' => 2
         ]);
 
-        $success['token'] =  $user->createToken('LandBooks')->plainTextToken;
+        $success['token'] = $user->createToken('LandBooks')->plainTextToken;
 
         return $this->sendResponse($success);
     }
@@ -56,16 +56,28 @@ class RegisterController extends BaseController
      */
     public function login(Request $request)
     {
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            $user = Auth::user();
-            $success['token'] =  $user->createToken('LandBooks')->plainTextToken;
-            $success['name'] =  $user->name;
-            $success['role'] =  $user->roles[0]->reference;
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
 
-            return $this->sendResponse($success);
-        }
-        else{
+        $credentials = $request->only(['email', 'password']);
+
+		if(Auth::attempt($credentials)){
+			$user = Auth::user();
+			$success['token'] = $user->createToken('LandBooks')->plainTextToken;
+			$success['name'] = $user->name;
+			$success['roles'] = $user->roles->pluck('reference');
+
+			return $this->sendResponse($success);
+		}else{
             return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
         }
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json('Success');
     }
 }

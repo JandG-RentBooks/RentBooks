@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         User::create([
             'payment_id' => 'Qwre5Tre',
             'name' => 'Petőcz József',
-            'email' => 'jozsef.petocz@gmail.com',
+            'email' => 'petocz.jozsef@gmail.com',
             'password' => bcrypt('secret'),
             'address' => '9012 Győr, Hármashatár út 20.',
             'is_active' => 1,

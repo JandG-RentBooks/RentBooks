@@ -1,12 +1,15 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CoverTypeController;
 use App\Http\Controllers\Admin\LabelController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\RegisterController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,27 +22,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(RegisterController::class)->group(function () {
+Route::controller(RegisterController::class)->group(function(){
     Route::post('register', 'register');
     Route::post('login', 'login');
 });
 
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('logout', [RegisterController::class, 'logout']);
     Route::prefix('admin')->middleware('can:accessAdmin')->group(function () {
         Route::resource('user', UserController::class);
-        Route::resource('author', AuthorController::class);
-        Route::resource('book', BookController::class);
-        Route::resource('category', CategoryController::class);
-        Route::resource('label', LabelController::class);
     });
 
     Route::prefix('admin')->middleware('can:accessEmployee')->group(function () {
         Route::resource('author', AuthorController::class);
         Route::resource('book', BookController::class);
         Route::resource('category', CategoryController::class);
+        Route::resource('cover-type', CoverTypeController::class);
         Route::resource('label', LabelController::class);
     });
-
-
 });
-

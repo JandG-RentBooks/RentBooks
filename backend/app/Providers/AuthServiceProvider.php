@@ -25,7 +25,6 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        // Az admin felületet csak az adminok láthatják.
         Gate::define('accessAdmin', function ($user) {
             return $user->hasRole('admin');
         });

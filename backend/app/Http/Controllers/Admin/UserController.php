@@ -64,7 +64,7 @@ class UserController extends Controller
             'role_id' => 'required|exists:roles,id',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $response = [
                 'success' => false,
                 'errors' => $validator->errors(),
@@ -145,7 +145,7 @@ class UserController extends Controller
             'role_id' => 'required|exists:roles,id',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $response = [
                 'success' => false,
                 'errors' => $validator->errors(),
@@ -193,9 +193,12 @@ class UserController extends Controller
     {
         $this->onlyAdmin();
 
-        $user->delete();
+        if ($user->delete()) {
+            return response()->json(['success']);
+        } else {
+            return response()->json(['failed']);
+        }
 
-        return response()->json(['success']);
 
     }
 
