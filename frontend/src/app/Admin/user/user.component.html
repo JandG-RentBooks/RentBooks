@@ -1,1 +1,38 @@
-<p *ngFor="let user of users">{{user.name}}</p>
+<div class="sticky-filter">
+    <div class="inner justify-content-between">
+        <span class="action d-inline-flex align-items-center"></span>
+        <span class="d-inline-block d-flex justify-content-end align-items-center"></span>
+    </div>
+    <div class="sticky-filter-cover d-none"></div>
+</div>
+
+<div class="admin-container pt-3">
+    <div class="container bg-transparent p-0">
+        <table class="table table-striped admin-table">
+            <thead>
+            <tr class="brd">
+                <th>ID</th>
+                <th>Név</th>
+                <th>Fizetési azonosító</th>
+                <th>Email</th>
+                <th>Cím</th>
+                <th>Telefon</th>
+                <th>Típus</th>
+            </tr>
+            <tr class="spacer"></tr>
+            </thead>
+
+            <tbody class="bg-white">
+                <tr *ngFor="let row of users">
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.payment_id  }}</td>
+                    <td>{{ row.email  }}</td>
+                    <td>{{ row.address }}</td>
+                    <td>{{ row.phone_number }}</td>
+                    <td>{{ row.subscription_type?.name }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

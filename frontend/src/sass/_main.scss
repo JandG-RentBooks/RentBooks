@@ -1,0 +1,192 @@
+@import 'variables';
+
+html, body {
+    margin: 0;
+    color: $font-color-dark;
+    height: 100%;
+    background-color: white;
+    scroll-behavior: auto !important;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style-type: none;
+}
+
+main {
+    display: block;
+    min-height: 100vh;
+}
+
+.admin-container {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background: $body-bg;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+/**
+Covers
+ */
+.layer {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.layer.active {
+    display: block;
+}
+
+.post-cover {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2000000;
+    background-color: rgba(255, 255, 255, .1);
+    background-image: url("../assets/images/loading.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+._f-line {
+    width: 1px !important;
+    height: 18px !important;
+    border-right: 1px solid $body-bg;
+}
+
+.btn-filter {
+    background-image: url("../assets/images/icons-V2/functions/filter.svg");
+}
+
+.btn-filter-reset {
+    background-image: url("../assets/images/icons-V2/functions/filter-reset.svg");
+}
+
+.btn-new {
+    background-image: url("../assets/images/icons-V2/functions/new.svg");
+}
+
+/**
+Sticky-Filter
+ */
+.sticky-filter {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    margin-left: 0;
+    margin-right: 0;
+    top: 0;
+    margin-top: -20px;
+    height: 50px;
+    background-color: white;
+    display: flex;
+    z-index: 5;
+
+    .sticky-filter-cover {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: rgba(255, 255, 255, .5);
+    }
+
+    .inner {
+        width: auto;
+        height: 100%;
+        margin: 0 15px 0;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        border-top: 1px solid $body-bg;
+
+        .search {
+            width: 160px;
+            height: 30px;
+            padding: 0 6px 0;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            background-color: $primary-hover;
+
+            input {
+                width: 110px !important;
+                height: 30px !important;
+                margin: 0 5px 0;
+                background-color: transparent;
+                border: none;
+                font-size: 14px;
+                min-height: 30px;
+            }
+
+            input:active, input:focus, .form-select:active, .form-select:focus {
+                border: none !important;
+                box-shadow: none !important;
+                outline: none !important;
+            }
+
+            .btn-search {
+                width: 12px !important;
+                height: 12px;
+                background-image: url("../assets/images/icons/icon-search.svg");
+                background-color: transparent;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 12px 12px;
+                cursor: pointer;
+            }
+
+            .btn-reset {
+                width: 12px !important;
+                height: 12px;
+                background-image: url("../assets/images/icons-V2/functions/search-reset.svg");
+                background-color: transparent;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 10px 10px;
+                cursor: pointer;
+            }
+        }
+
+        label {
+            font-size: 12px;
+        }
+
+        ::placeholder {
+            color: $font-color-dark;
+            opacity: 1; /* Firefox */
+        }
+
+        ::-ms-input-placeholder { /* Microsoft Edge */
+            color: $font-color-dark;
+        }
+    }
+}

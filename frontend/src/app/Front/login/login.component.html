@@ -7,7 +7,7 @@
               #f="ngForm"
               novalidate>
 
-          <div class="form-group mb-3">
+          <div class="form-group _form-group-admin mb-3">
             <label>Email cím</label>
             <input
               type="email"
@@ -19,10 +19,10 @@
               [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
             />
             <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
-              email is required!
+              Az email cím megadása kötelező
             </div>
           </div>
-          <div class="form-group mb-3">
+          <div class="form-group _form-group-admin mb-5">
             <label>Jelszó</label>
             <input
               type="password"
@@ -35,12 +35,12 @@
               [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
             />
             <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
-              <div *ngIf="password.errors['required']">Password is required</div>
-              <div *ngIf="password.errors['minlength']">Password must be at least 6 characters</div>
+              <div *ngIf="password.errors['required']">A jelszó megadása kötelező</div>
+              <div *ngIf="password.errors['minlength']">A jelszónak legalább 6 kerakteresnek kell lennie.</div>
             </div>
           </div>
-          <div class="form-group">
-            <button class="btn btn-primary btn-block">
+          <div class="form-group _form-group-admin mb-2 text-center">
+            <button type="submit" class="btn btn-primary">
               Bejelentkezés
             </button>
           </div>
@@ -50,10 +50,6 @@
             </div>
           </div>
         </form>
-
-        <div class="alert alert-success" *ngIf="isLoggedIn">
-          Logged in as {{ roles }}.
-        </div>
       </div>
     </div>
   </div>
