@@ -16,22 +16,22 @@ class LabelSeeder extends Seeder
     public function run()
     {
         Label::create([
-           'label' => 'izgalmas'
+           'name' => 'izgalmas'
         ]);
         Label::create([
-           'label' => 'romantikus'
+           'name' => 'romantikus'
         ]);
         Label::create([
-           'label' => 'kasszasiker'
+           'name' => 'kasszasiker'
         ]);
         Label::create([
-           'label' => 'filmadaptáció'
+           'name' => 'filmadaptáció'
         ]);
         Label::create([
-           'label' => 'féfiaknak'
+           'name' => 'féfiaknak'
         ]);
         Label::create([
-            'label' => 'tini'
+            'name' => 'tini'
         ]);
 
     }

@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
         User::create([
             'payment_id' => 'Dwre5Tre',
             'name' => 'Teszt Felhasználó 1',
-            'email' => 'teszt1.@gmail.com',
+            'email' => 'teszt1@gmail.com',
             'password' => bcrypt('secret'),
             'address' => '9012 Győr, Kispipacs út 13.',
             'is_active' => 1,
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
         User::create([
             'payment_id' => 'gwre5Tre',
             'name' => 'Teszt Felhasználó 2',
-            'email' => 'teszt2.@gmail.com',
+            'email' => 'teszt2@gmail.com',
             'password' => bcrypt('secret'),
             'address' => '9012 Győr, Petőfi utca 13.',
             'is_active' => 0,

@@ -3,13 +3,14 @@
   <header class="p-3 mb-3 border-bottom">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        <a href="/admin/dashboard" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+          <i class="bi bi-speedometer admin-dashboard-icon"></i>
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a routerLink="/admin" class="nav-link px-2 link-dark">Dashboard</a></li>
-          <li *ngIf="roles.isAdmin"><a routerLink="/admin/users" routerLinkActive="active" class="nav-link px-2 link-dark">Felhasználók</a></li>
+          <li><a routerLink="/admin/dashboard" class="nav-link px-2 link-dark">Dashboard</a></li>
+          <li *ngIf="roles.isAdmin"><a routerLink="/admin/users" routerLinkActive="active"
+                                       class="nav-link px-2 link-dark">Felhasználók</a></li>
           <li><a routerLink="/admin/books" routerLinkActive="active" class="nav-link px-2 link-dark">Könyvek</a></li>
           <li><a routerLink="/admin/authors" routerLinkActive="active" class="nav-link px-2 link-dark">Szerzők</a></li>
           <li><a routerLink="/admin/categories" routerLinkActive="active" class="nav-link px-2 link-dark">Kategóriák</a></li>
@@ -18,7 +19,8 @@
         </ul>
 
         <div class="dropdown text-end">
-          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+             data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-circle admin-user-icon me-1"></i> <span class="d-block me-2">{{userName}}</span>
           </a>
           <ul class="dropdown-menu text-small" style="">
@@ -43,7 +45,8 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use
+              xlink:href="#bootstrap"></use></svg>
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -54,11 +57,12 @@
         </ul>
 
         <div class="dropdown text-end">
-          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+             data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-circle admin-user-icon me-1"></i> <span class="d-block me-2">{{userName}}</span>
           </a>
           <ul class="dropdown-menu text-small" style="">
-            <li *ngIf="showAdminLink"><a class="dropdown-item" href="/admin">Admin felület</a></li>
+            <li *ngIf="showAdminLink"><a class="dropdown-item" href="/admin/dashboard">Admin felület</a></li>
             <li *ngIf="!showLoginLink"><hr class="dropdown-divider"></li>
             <li *ngIf="showLoginLink"><a class="dropdown-item" routerLink="/login">Bejelentkezés</a></li>
             <li><a class="dropdown-item" routerLink="/register">Regisztáció</a></li>

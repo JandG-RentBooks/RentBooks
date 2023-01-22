@@ -16,4 +16,9 @@ class Wishlist extends Model
         'book_id',
         'sort'
     ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

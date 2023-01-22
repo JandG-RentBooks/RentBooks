@@ -50,6 +50,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     /**
@@ -89,7 +91,7 @@ class User extends Authenticatable
     /**
      * @return HasMany
      */
-    public function lending(): HasMany
+    public function lendings(): HasMany
     {
         return $this->hasMany(Lending::class, 'user_id');
     }
@@ -108,6 +110,14 @@ class User extends Authenticatable
     public function active_shipping_address(): BelongsTo
     {
         return $this->belongsTo(ShippingAddress::class, 'active_shipping_address_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function shipping_address(): HasMany
+    {
+        return $this->hasMany(ShippingAddress::class, 'user_id');
     }
 
 

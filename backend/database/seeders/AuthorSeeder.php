@@ -16,19 +16,23 @@ class AuthorSeeder extends Seeder
     public function run()
     {
         Author::create([
-            'name' => 'Suzanne Collins',
+            'name' => 'J. K. Rowling',
+            'birthday' => '1965',
         ]);
 
         Author::create([
             'name' => 'Andrzej Sapkowski',
+            'birthday' => '1948',
         ]);
 
         Author::create([
             'name' => 'J. R. R. Tolkien',
+            'birthday' => '1892',
         ]);
 
         Author::create([
-            'name' => 'Rick Riordan',
+            'name' => 'Isaac Asimov',
+            'birthday' => '1920',
         ]);
     }
 }

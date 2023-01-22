@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestimonialController;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,9 +32,11 @@ Route::controller(RegisterController::class)->group(function(){
     Route::post('login', 'login');
 });
 
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+Route::controller(HomeController::class)->group(function(){
+    //Címlap
+    Route::get('testimonial', [TestimonialController::class, 'index']);
+});
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [RegisterController::class, 'logout']);
     Route::prefix('admin')->middleware('can:accessAdmin')->group(function () {
@@ -42,5 +49,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::resource('category', CategoryController::class);
         Route::resource('cover-type', CoverTypeController::class);
         Route::resource('label', LabelController::class);
+
+        //Dashboard
+        Route::get('dashboard', [DashboardController::class, 'index']);
+    });
+
+    Route::middleware('can:accessUser')->group(function () {
+        //Profile
+        Route::get('profile/user', [ProfileController::class, 'getUser']);
+        Route::get('profile/testimonials', [ProfileController::class, 'getTestimonials']);
+        //Wishlist
+        Route::resource('wishlist', Wishlist::class);
     });
 });

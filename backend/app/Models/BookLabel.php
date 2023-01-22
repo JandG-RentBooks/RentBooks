@@ -15,4 +15,14 @@ class BookLabel extends Model
         'book_id',
         'label_id',
     ];
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class, 'book_id');
+    }
+
+    public function label()
+    {
+        return $this->belongsTo(Label::class, 'label_id');
+    }
 }

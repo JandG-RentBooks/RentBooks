@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubscriptionType extends Model
+class Testimonial extends Model
 {
     use HasFactory;
 
-    protected $table = 'subscription_types';
+    protected $table = 'testimonials';
 
     protected $fillable = [
-        'book_number',
+        'user_id',
         'description',
-        'price',
+        'rating',
     ];
 
     protected $casts = [

@@ -17,4 +17,9 @@ class ShippingAddress extends Model
         'city',
         'address',
     ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

@@ -82,16 +82,17 @@ class UserController extends Controller
             'role_id' => $request->get('role_id')
         ]);
 
-        return response()->json(['success']);
+        return response()->json(['success'], 200);
     }
 
     /**
      * Display the specified resource.
      *
+     * @param Request $request
      * @param int $id
      * @return JsonResponse
      */
-    public function show($id)
+    public function show(Request $request, int $id)
     {
         $this->onlyAdmin();
 
@@ -109,7 +110,7 @@ class UserController extends Controller
      * @param int $id
      * @return JsonResponse
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $this->onlyAdmin();
 
@@ -200,15 +201,5 @@ class UserController extends Controller
         }
 
 
-    }
-
-    /**
-     * @return JsonResponse|void
-     */
-    private function onlyAdmin()
-    {
-        if (!auth()->user()->hasRole('admin')) {
-            return response()->json([], 404);
-        }
     }
 }

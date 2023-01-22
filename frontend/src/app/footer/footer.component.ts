@@ -3,26 +3,25 @@ import {AuthService} from "../helper/auth.service";
 import {StorageService} from "../Services/storage.service";
 
 @Component({
-  selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+    selector: 'app-footer',
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
 
-  showAdminFooter = false
+    showAdminFooter = false
+    dateCopyright: any
 
-  constructor(
-    private authService: AuthService,
-    private storageService: StorageService,) {
-  }
-
-  ngOnInit(): void {
-    if (this.authService.isAuthenticated()){
-      this.showAdminFooter = location.href.split('/').includes('admin')
-
-
-
+    constructor(
+        private authService: AuthService,
+        private storageService: StorageService,) {
     }
-  }
+
+    ngOnInit(): void {
+        if (this.authService.isAuthenticated()) {
+            this.showAdminFooter = location.href.split('/').includes('admin')
+            this.dateCopyright = new Date().getFullYear()
+        }
+    }
 
 }

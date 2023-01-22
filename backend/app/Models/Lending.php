@@ -18,4 +18,9 @@ class Lending extends Model
         'created_by',
         'updated_by',
     ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

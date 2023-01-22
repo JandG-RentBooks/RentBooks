@@ -17,49 +17,49 @@ import {LabelComponent} from "./Admin/label/label.component";
 import {ErrorForbiddenComponent} from "./Errors/error-forbidden/error-forbidden.component";
 
 const routes: Routes = [
-  {
-    path: "",
-    component: IndexComponent
-  },
-  {
-    path: "login",
-    title: 'Bejelentkezés',
-    component: LoginComponent
-  },
-  {
-    path: "register",
-    title: 'Regisztráció',
-    component: RegisterComponent
-  },
-  {
-    path: "index",
-    component: IndexComponent
-  },
+    {
+        path: "",
+        component: IndexComponent
+    },
+    {
+        path: "login",
+        title: 'Bejelentkezés',
+        component: LoginComponent
+    },
+    {
+        path: "register",
+        title: 'Regisztráció',
+        component: RegisterComponent
+    },
+    {
+        path: "index",
+        component: IndexComponent
+    },
 
-  {path: "admin", title: 'Dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  {path: "admin/users", title: 'Felhasználók', component: UserComponent, canActivate: [AuthGuard, AdminGuard]},
-  {path: "admin/authors", title: 'Szerzők', component: AuthorComponent, canActivate: [AuthGuard]},
-  {path: "admin/books", title: 'Könyvek', component: BookComponent, canActivate: [AuthGuard]},
-  {path: "admin/categories", title: 'Kategóriák', component: CategoryComponent, canActivate: [AuthGuard]},
-  {path: "admin/cover-types", title: 'Borító típusok', component: CoverTypeComponent, canActivate: [AuthGuard]},
-  {path: "admin/labels", title: 'Cimkék', component: LabelComponent, canActivate: [AuthGuard]},
+    {path: "admin/dashboard", title: 'Dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+    {path: "admin/users", title: 'Felhasználók', component: UserComponent, canActivate: [AuthGuard, AdminGuard]},
+    {path: "admin/authors", title: 'Szerzők', component: AuthorComponent, canActivate: [AuthGuard]},
+    {path: "admin/books", title: 'Könyvek', component: BookComponent, canActivate: [AuthGuard]},
+    {path: "admin/categories", title: 'Kategóriák', component: CategoryComponent, canActivate: [AuthGuard]},
+    {path: "admin/cover-types", title: 'Borító típusok', component: CoverTypeComponent, canActivate: [AuthGuard]},
+    {path: "admin/labels", title: 'Cimkék', component: LabelComponent, canActivate: [AuthGuard]},
 
-  {
-    path: "forbidden",
-    title: 'Hozzáférés megtagadva',
-    component: ErrorForbiddenComponent
-  },
+    {
+        path: "forbidden",
+        title: 'Hozzáférés megtagadva',
+        component: ErrorForbiddenComponent
+    },
 
-  {
-    path: "**",
-    component: ErrorNotFoundComponent
-  }
+    {
+        path: "**",
+        component: ErrorNotFoundComponent
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  providers: [AuthService, AuthGuard]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
+    providers: [AuthService, AuthGuard]
 })
 export class AppRoutingModule {
 }
