@@ -82,7 +82,7 @@ class UserController extends Controller
             'role_id' => $request->get('role_id')
         ]);
 
-        return response()->json(['success'], 200);
+        return response()->json(['success' => true, 'id' => $user->id,], 200);
     }
 
     /**

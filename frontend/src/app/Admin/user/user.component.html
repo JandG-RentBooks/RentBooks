@@ -1,15 +1,34 @@
 <div class="sticky-filter">
     <div class="inner justify-content-between">
-        <span class="action d-inline-flex align-items-center"></span>
-        <span class="d-inline-block d-flex justify-content-end align-items-center"></span>
+        <span class="action d-inline-flex align-items-center">
+            <span class="d-inline-block d-flex justify-content-end align-items-center">
+                <span (click)="openNew()" class="btn-action btn-new d-inline-block me-2"
+                      matTooltip="Új tétel létrehozása"
+                      matTooltipPosition="right"
+                      matTooltipClass="">
+                </span>
+        </span>
+        </span>
+        <span class="d-inline-block d-flex justify-content-end align-items-center">
+                <div class="search">
+                    <span class="btn-search d-inline-block"></span>
+        <input type="text" placeholder="Keresés...">
+        <span class="btn-reset d-inline-block"></span>
     </div>
-    <div class="sticky-filter-cover d-none"></div>
+    </span>
+</div>
+<div class="sticky-filter-cover d-none"></div>
 </div>
 
+<div id="cover" class="d-none"></div>
+
+<app-user-form *ngIf="showFormComponent" [selectedItem]="selectedItem" (closeEventEmitter)="closeNew($event)"></app-user-form>
+
+<app-user-details *ngIf="showDetailsComponent" [selectedItem]="selectedItem" (closeEventEmitter)="closeDetails($event)"></app-user-details>
+
 <div class="admin-container pt-3">
-    <div class="container bg-transparent p-0">
-        <table class="table table-striped admin-table">
-            <thead>
+    <table class="table table-striped admin-table">
+        <thead>
             <tr class="brd">
                 <th>ID</th>
                 <th>Név</th>
@@ -18,21 +37,51 @@
                 <th>Cím</th>
                 <th>Telefon</th>
                 <th>Típus</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             <tr class="spacer"></tr>
-            </thead>
+        </thead>
 
-            <tbody class="bg-white">
-                <tr *ngFor="let row of users">
-                    <td>{{ row.id }}</td>
-                    <td>{{ row.name }}</td>
-                    <td>{{ row.payment_id  }}</td>
-                    <td>{{ row.email  }}</td>
-                    <td>{{ row.address }}</td>
-                    <td>{{ row.phone_number }}</td>
-                    <td>{{ row.subscription_type?.name }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <tbody class="bg-white">
+            <tr *ngFor="let row of users">
+                <td>{{ row.id }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.payment_id }}</td>
+                <td>{{ row.email }}</td>
+                <td>{{ row.address }}</td>
+                <td>{{ row.phone_number }}</td>
+                <td>{{ row.subscription_type?.name }}</td>
+                <td class="text-center">
+                    <span class="btn-action table-btn-edit d-inline-block" matTooltip="Tétel szerkesztése" matTooltipPosition="left" matTooltipClass="" (click)="openEdit(row.id, row.name)"></span>
+                </td>
+
+                <td class="text-center">
+                    <span class="btn-action table-btn-open d-inline-block" matTooltip="Részletek megtekintése" matTooltipPosition="left" matTooltipClass="" (click)="openDetails(row.id, row.name)"></span>
+                </td>
+
+                <td class="text-center">
+                    <span class="btn-action table-btn-delete d-inline-block" matTooltip="Tétel törlése" matTooltipPosition="left" matTooltipClass=""></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="sticky-footer">
+        <div class="left-side"></div>
+        <div class="right-side">
+            <div class="left">
+                <!--                <span class="me-2 __text"></span>-->
+                <!--                <span>-->
+                <!--                    <select class="form-select">-->
+                <!--                        <option></option>-->
+                <!--                    </select>-->
+                <!--                </span>-->
+                <!--                <span v-if="options.total !== null" class="ms-3 __total">{{ texts().all }}: {{ options.total }}</span>-->
+            </div>
+            <div class="pager-container">
+                <app-pagination [links]="links" (paginateEventEmitter)="paginate($event)"></app-pagination>
+            </div>
+        </div>
     </div>
 </div>

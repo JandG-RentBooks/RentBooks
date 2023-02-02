@@ -1,41 +1,33 @@
 <!--Admin fejléc-->
 <span *ngIf="showAdminMenu">
-  <header class="p-3 mb-3 border-bottom">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/admin/dashboard" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-          <i class="bi bi-speedometer admin-dashboard-icon"></i>
-        </a>
+    <header class="navbar admin-header">
+      <a class="navbar-brand col-3 col-lg-2 me-0 px-3 fs-6" href="#">*****</a>
+      <div class="col-9 col-lg-10 d-flex position-relative ms-0">
+          <button (click)="openSidebar()" class="navbar-toggler position-absolute d-md-none collapsed ms-5" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                  aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a routerLink="/admin/dashboard" class="nav-link px-2 link-dark">Dashboard</a></li>
-          <li *ngIf="roles.isAdmin"><a routerLink="/admin/users" routerLinkActive="active"
-                                       class="nav-link px-2 link-dark">Felhasználók</a></li>
-          <li><a routerLink="/admin/books" routerLinkActive="active" class="nav-link px-2 link-dark">Könyvek</a></li>
-          <li><a routerLink="/admin/authors" routerLinkActive="active" class="nav-link px-2 link-dark">Szerzők</a></li>
-          <li><a routerLink="/admin/categories" routerLinkActive="active" class="nav-link px-2 link-dark">Kategóriák</a></li>
-          <li><a routerLink="/admin/cover-types" routerLinkActive="active" class="nav-link px-2 link-dark">Borító típusok</a></li>
-          <li><a routerLink="/admin/labels" routerLinkActive="active" class="nav-link px-2 link-dark">Cimkék</a></li>
-        </ul>
+          <div class="navbar-nav"></div>
 
-        <div class="dropdown text-end">
-          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-             data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-person-circle admin-user-icon me-1"></i> <span class="d-block me-2">{{userName}}</span>
-          </a>
-          <ul class="dropdown-menu text-small" style="">
-            <li><a class="dropdown-item" href="/">Felhasználói felület</a></li>
-            <li *ngIf="!showLoginLink"><hr class="dropdown-divider"></li>
-            <li *ngIf="showLoginLink"><a class="dropdown-item" routerLink="/login">Bejelentkezés</a></li>
-            <li><a class="dropdown-item" routerLink="/register">Regisztáció</a></li>
-            <li *ngIf="showProfileLink"><a class="dropdown-item" routerLink="#">Adataim</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li *ngIf="showLogoutLink"><a href="##" class="dropdown-item" (click)="logOut()">Kijelentkezés</a></li>
-          </ul>
+            <div class="dropdown me-3">
+              <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                 data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle admin-user-icon me-1"></i> <span class="d-block me-2 username">{{userName}}</span>
+              </a>
+              <ul class="dropdown-menu text-small" style="">
+                <li><a class="dropdown-item" href="/">Felhasználói felület</a></li>
+                <li *ngIf="!showLoginLink"><hr class="dropdown-divider"></li>
+                <li *ngIf="showLoginLink"><a class="dropdown-item" routerLink="/login">Bejelentkezés</a></li>
+                <li><a class="dropdown-item" routerLink="/register">Regisztáció</a></li>
+                <li *ngIf="showProfileLink"><a class="dropdown-item" routerLink="#">Adataim</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li *ngIf="showLogoutLink"><a href="##" class="dropdown-item" (click)="logOut()">Kijelentkezés</a></li>
+              </ul>
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
+    </header>
 </span>
 
 

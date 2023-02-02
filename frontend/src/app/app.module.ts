@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {AppRoutingModule} from './app-routing.module';
@@ -23,6 +23,19 @@ import {TestimonialComponent} from './index/testimonial/testimonial.component';
 import {ErrorNotFoundComponent} from './Errors/error-not-found/error-not-found.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {ErrorForbiddenComponent} from './Errors/error-forbidden/error-forbidden.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { UserFormComponent } from './Admin/user/user-form/user-form.component';
+import { UserDetailsComponent } from './Admin/user/user-details/user-details.component';
+import { PaginationComponent } from './Admin/includes/pagination/pagination.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatSelectModule} from "@angular/material/select";
+import {MatOptionModule} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -46,13 +59,26 @@ import {ErrorForbiddenComponent} from './Errors/error-forbidden/error-forbidden.
         TestimonialComponent,
         ErrorNotFoundComponent,
         ErrorForbiddenComponent,
+        SidebarComponent,
+        UserFormComponent,
+        UserDetailsComponent,
+        PaginationComponent,
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         AppRoutingModule,
         ReactiveFormsModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        MatIconModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatSlideToggleModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatInputModule,
+        MatTooltipModule
     ],
     providers: [],
     bootstrap: [AppComponent]

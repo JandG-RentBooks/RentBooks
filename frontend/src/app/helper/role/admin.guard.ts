@@ -7,8 +7,7 @@ import {AuthService} from "../auth.service";
     providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-    constructor(private authService: AuthService, private router: Router) {
-    }
+    constructor(private authService: AuthService, private router: Router) {}
 
     // @ts-ignore
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

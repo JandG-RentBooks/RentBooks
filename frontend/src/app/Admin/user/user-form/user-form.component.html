@@ -1,0 +1,50 @@
+<div class="add-new-item">
+    <div class="inner">
+        <div class="header">
+            <span *ngIf="selectedItem.id === undefined" class="title">Új felhasználó létrehozása</span>
+            <span *ngIf="selectedItem.id" class="title">Szerkesztés: {{ selectedItem.name }}</span>
+            <span class="close" (click)="close()"></span>
+        </div>
+        <div class="content">
+            <form [formGroup]="form" class="d-flex flex-column">
+                <mat-form-field appearance="fill">
+                    <mat-label>Név <span class="text-danger"> *</span></mat-label>
+                    <input matInput formControlName="name" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Email cím <span class="text-danger"> *</span></mat-label>
+                    <input matInput formControlName="email" type="email">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Jelszó <span *ngIf="selectedItem.id === undefined" class="text-danger"> *</span></mat-label>
+                    <input matInput formControlName="password" type="password">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Cím</mat-label>
+                    <input matInput formControlName="address" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Telefon</mat-label>
+                    <input matInput formControlName="phone_number" type="tel">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Szerepkör</mat-label>
+                    <mat-select formControlName="role">
+                        <mat-option *ngFor="let roleItem of roleList" [value]="roleItem.id">
+                            {{roleItem.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <button *ngIf="selectedItem.id === undefined" (click)="store()" mat-raised-button color="primary" class="text-white">Mentés</button>
+                <button *ngIf="selectedItem.id !== undefined" (click)="update()" mat-raised-button color="primary" class="text-white">Módosítás</button>
+
+            </form>
+        </div>
+    </div>
+</div>

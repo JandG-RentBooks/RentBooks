@@ -43,12 +43,13 @@ Admin
 
 .admin-table thead th {
     border-color: transparent !important;
+    font-size: 12px;
 }
 
 .admin-table tbody {
     color: $primary-dark-active;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     //border: 1px solid $primary-hover;
 }
 
