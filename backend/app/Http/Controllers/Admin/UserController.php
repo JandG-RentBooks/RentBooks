@@ -18,14 +18,24 @@ class UserController extends Controller
      *
      * @return JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
         // Todo A filtert még ki kell dolgozni
 
-        $user = User::with('subscription_type')
+        $query = User::query();
+        $query->with('subscription_type')
             ->with('active_shipping_address')
-            ->with('roles')
-            ->paginate(20);
+            ->with('roles');
+
+        if ($request->input('search')) {
+            $query->where('name', 'LIKE', '%' . escape_like($request->input('search')) . '%');
+        }
+
+        if ($request->get('status') == 'archived') {
+            $query->onlyTrashed();
+        }
+
+        $user = $query->paginate($request->page_length);
 
         return response()->json($user);
     }
@@ -35,7 +45,7 @@ class UserController extends Controller
      *
      * @return JsonResponse
      */
-    public function create()
+    public function create(Request $request)
     {
         $this->onlyAdmin();
 
@@ -69,7 +79,7 @@ class UserController extends Controller
                 'success' => false,
                 'errors' => $validator->errors(),
             ];
-            return response()->json($response);
+            return response()->json($response, 422);
         }
 
         $input = $request->all();
@@ -120,7 +130,7 @@ class UserController extends Controller
             ->where('id', $id)->get();
 
         $data['user'] = $user;
-        $data['roles'] = Role::where('reference', '<>', 'user')->get();
+        $data['roles'] = Role::all();
 
         return response()->json($data);
     }
@@ -140,7 +150,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255', Rule::unique('users')->ignore($user->id ?? 0),
-            'password' => 'string|min:8|max:255',
+            'password' => 'nullable|min:8|max:255',
             'address' => 'nullable|string|max:255',
             'phone_number' => 'nullable|string|max:255',
             'role_id' => 'required|exists:roles,id',
@@ -151,15 +161,24 @@ class UserController extends Controller
                 'success' => false,
                 'errors' => $validator->errors(),
             ];
-            return response()->json($response);
+            return response()->json($response, 422);
         }
 
-        $user->fill($request->only('name', 'email', 'address'));
+        $user->fill($request->only('name', 'email', 'address', 'phone_number'));
         $user->is_active = $request->input('is_active');
 
         if (!empty($request->input('password'))) {
+            $validator = Validator::make([$request->input('password')], [
+                'password' => 'min:8|max:255',
+            ]);
+            if ($validator->fails()) {
+                $response = [
+                    'success' => false,
+                    'errors' => $validator->errors(),
+                ];
+                return response()->json($response, 422);
+            }
             $user->password = Hash::make($request->input('password'));
-            $user->password_changed_at = now();
         }
 
         $user->save();
@@ -179,7 +198,7 @@ class UserController extends Controller
             ->with('roles')
             ->where('id', $user->id)->get();
 
-        $data['roles'] = Role::where('reference', '<>', 'user')->get();
+        $data['roles'] = Role::all();
 
         return response()->json($data);
     }

@@ -36,6 +36,10 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { ErrorModalComponent } from './Admin/includes/error-modal/error-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormToastComponent } from './Admin/includes/form-toast/form-toast.component';
+import { DeleteModalComponent } from './Admin/includes/delete-modal/delete-modal.component';
 
 
 @NgModule({
@@ -63,6 +67,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         UserFormComponent,
         UserDetailsComponent,
         PaginationComponent,
+        ErrorModalComponent,
+        FormToastComponent,
+        DeleteModalComponent,
     ],
     imports: [
         BrowserModule,
@@ -78,7 +85,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         MatSelectModule,
         MatOptionModule,
         MatInputModule,
-        MatTooltipModule
+        MatTooltipModule,
+        NgbModule
     ],
     providers: [],
     bootstrap: [AppComponent]

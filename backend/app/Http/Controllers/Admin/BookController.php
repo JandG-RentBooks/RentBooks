@@ -40,6 +40,9 @@ class BookController extends Controller
             $query->where('title', 'LIKE', '%' . escape_like($request->input('search')) . '%');
         }
 
+        if ($request->get('status') == 'archived') {
+            $query->onlyTrashed();
+        }
 
         $books = $query->paginate($this->getPageLength($request));
 

@@ -32,6 +32,8 @@ return new class extends Migration
 
             $table->boolean('is_active')->default(1);
 
+            $table->softDeletes();
+
             $table->rememberToken();
 
             $table->timestamps();

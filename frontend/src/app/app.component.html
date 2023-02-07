@@ -11,34 +11,10 @@
             </div>
         </div>
     </div>
+    <app-form-toast></app-form-toast>
 </div>
 
 <div *ngIf="!isAdmin" class="container-fluid">
     <router-outlet></router-outlet>
-    <!-- <button mat-raised-button
-            matTooltip="Info about the action"
-            matTooltipPosition="left"
-            matTooltipClass="example-tooltip-red">Basic</button>
-    <button mat-raised-button color="primary">Primary</button>
-    <button mat-raised-button color="accent">Accent</button>
-    <button mat-raised-button color="warn">Warn</button>
-
-    <div class="d-flex flex-column my-3 w-25">
-        <mat-form-field appearance="fill">
-            <mat-label>Input</mat-label>
-            <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Select</mat-label>
-            <mat-select>
-                <mat-option value="one">First option</mat-option>
-                <mat-option value="two">Second option</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Textarea</mat-label>
-            <textarea matInput></textarea>
-        </mat-form-field>
-    </div> -->
 </div>
 <app-footer></app-footer>

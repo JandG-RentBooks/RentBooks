@@ -12,6 +12,7 @@ const API_URL = environment.apiUrl;
 export class UserService {
 
     httpOptions = {
+        params: {},
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.storageService.getUser().token}`
@@ -21,14 +22,15 @@ export class UserService {
     constructor(private http: HttpClient, private storageService: StorageService) {
     }
 
-    index(): Observable<any> {
-        return this.http.get(
-            API_URL + 'admin/user',
+    index(params: any): Observable<any> {
+        this.httpOptions.params = {page_length: params.perPage, search: params.searchValue,}
+        return this.http.get(params.url,
             this.httpOptions
         );
     }
 
     create(): Observable<any> {
+        this.httpOptions.params = {}
         return this.http.get(
             API_URL + 'admin/user/create',
             this.httpOptions
@@ -38,6 +40,7 @@ export class UserService {
 
 
     edit(id: Number): Observable<any> {
+        this.httpOptions.params = {}
         return this.http.get(
             API_URL + `admin/user/${id}/edit`,
             this.httpOptions
@@ -45,6 +48,7 @@ export class UserService {
     }
 
     show(id: Number): Observable<any> {
+        this.httpOptions.params = {}
         return this.http.get(
             API_URL + `admin/user/${id}`,
             this.httpOptions
@@ -52,6 +56,7 @@ export class UserService {
     }
 
     store(data: any): Observable<any> {
+        this.httpOptions.params = {}
         console.log(data)
         return this.http.post(
             API_URL + 'admin/user',
@@ -62,12 +67,14 @@ export class UserService {
                 address: data.address,
                 phone_number: data.phone_number,
                 role_id: data.role,
+                is_active: data.isActive,
             },
             this.httpOptions
         );
     }
 
     update(data: any, id: number): Observable<any> {
+        this.httpOptions.params = {}
         console.log(data)
         return this.http.patch(
             API_URL + `admin/user/${id}`,
@@ -78,8 +85,19 @@ export class UserService {
                 address: data.address,
                 phone_number: data.phone_number,
                 role_id: data.role,
+                is_active: data.isActive,
             },
             this.httpOptions
         );
     }
+
+    destroy(id: number): Observable<any> {
+        this.httpOptions.params = {}
+        return this.http.delete(
+            API_URL + `admin/user/${id}`,
+            this.httpOptions
+        );
+    }
+
+
 }

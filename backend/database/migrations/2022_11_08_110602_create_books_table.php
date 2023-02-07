@@ -53,6 +53,8 @@ return new class extends Migration
 
             $table->boolean('is_new')->default(0);
 
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }

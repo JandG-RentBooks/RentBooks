@@ -16,9 +16,11 @@ export class PaginationComponent implements OnInit {
     constructor() {
     }
 
-    ngOnInit()
-        :
-        void {
+    ngOnInit(): void {
+    }
+
+    paginate(url: string): void {
+        this.paginateEventEmitter.emit(url)
     }
 
 }

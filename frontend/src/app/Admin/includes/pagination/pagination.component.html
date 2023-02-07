@@ -1,18 +1,18 @@
 <nav aria-label="Page navigation">
-<!--    <ul class="pagination pagination-sm justify-content-end">-->
-<!--            <span v-for="(link, index) in links" :key='index'>-->
-<!--                <li v-if="index === 0" class="page-item">-->
-<!--                    <a v-if="link.url" @click="paginate(link.url)" class="page-link prev-active" href="#"></a>-->
-<!--                    <a v-else class="page-link prev-inactive" href="##" disabled></a>-->
-<!--                </li>-->
-<!--                <li v-else-if="index === links.length-1" class="page-item">-->
-<!--                    <a v-if="link.url" @click="paginate(link.url)" class="page-link next-active" href="#"></a>-->
-<!--                    <a v-else class="page-link next-inactive" href="##" disabled></a>-->
-<!--                </li>-->
-<!--                <li v-else class="page-item">-->
-<!--                    <a v-if="!link.active" @click="paginate(link.url)" class="page-link" href="#">{{ link.label }}</a>-->
-<!--                    <a v-else class="page-link current-page" href="##" disabled>{{ link.label }}</a>-->
-<!--                </li>-->
-<!--            </span>-->
-<!--    </ul>-->
+    <ul class="pagination pagination-sm justify-content-end mb-0">
+        <span *ngFor="let link of links; index as index">
+                <li *ngIf="index === 0" class="page-item">
+                  <a *ngIf="link.url" (click)="paginate(link.url)" class="page-link prev-active"></a>
+                   <a *ngIf="!link.url" class="page-link prev-inactive" disabled></a>
+                </li>
+                <li *ngIf="index === links.length-1" class="page-item">
+                    <a *ngIf="link.url" (click)="paginate(link.url)" class="page-link next-active"></a>
+                    <a *ngIf="!link.url" class="page-link next-inactive" disabled></a>
+                </li>
+                <li *ngIf="index !== 0 && index !== links.length-1" class="page-item">
+                    <a *ngIf="!link.active" (click)="paginate(link.url)" class="page-link">{{ link.label }}</a>
+                    <a *ngIf="link.active" class="page-link current-page" disabled>{{ link.label }}</a>
+                </li>
+           </span>
+    </ul>
 </nav>

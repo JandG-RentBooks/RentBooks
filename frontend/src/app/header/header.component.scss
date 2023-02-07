@@ -9,10 +9,6 @@
     .navbar-brand {
         color: #2f3d56;
     }
-    .admin-user-icon {
-        font-size: 20px;
-        color: #2f3d56;
-    }
     .admin-dashboard-icon {
         font-size: 40px;
         color: #3768B2;
@@ -25,15 +21,26 @@
     }
     .dropdown-menu[data-bs-popper] {
         top: 100%;
-        left: -12px;
+        left: -16px;
         font-size: 12px;
         z-index: 1000
     }
 
     .dropdown {
+        a {
+            font-size: 16px;
+            color: #2f3d56;
+        }
+        .dropdown-item{
+            font-size: 12px;
+        }
         .username {
             font-size: 13px;
         }
+        .admin-user-icon {
+            font-size: 20px;
+        }
+
     }
 }
 

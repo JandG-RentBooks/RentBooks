@@ -1,9 +1,9 @@
 @import 'variables';
 
-
 /**
 Admin
  */
+
 .admin-table {
     //z-index: 2;
 }
@@ -15,7 +15,7 @@ Admin
     font-size: 14px;
 }
 
-.admin-table > :not(caption) > * > * {
+.admin-table> :not(caption)>*>* {
     padding: 0.5rem 0.5rem;
     border-bottom-width: 0;
     box-shadow: none;
@@ -33,8 +33,10 @@ Admin
     border-radius: 5px;
 }
 
-.admin-table thead .brd th, .admin-table thead .brd-single th {
-    background-color: $primary-mid-hover;
+.admin-table thead .brd th,
+.admin-table thead .brd-single th {
+    //background-color: $primary-mid-hover;
+    background-color: #4FC3F7;
 }
 
 .admin-table thead tr.spacer {
@@ -57,8 +59,8 @@ Admin
     height: 36px !important;
 }
 
-.table-striped > tbody > tr:nth-child(2n) > td,
-.table-striped > tbody > tr:nth-child(2n) > th {
+.table-striped>tbody>tr:nth-child(2n)>td,
+.table-striped>tbody>tr:nth-child(2n)>th {
     background-color: #f7f7f7;
 }
 
@@ -94,11 +96,9 @@ Admin
     border-top-right-radius: 10px;
 }
 
-
 .td-right {
     text-align: right;
 }
-
 
 .admin-table-inner thead {
     height: 36px;
@@ -108,7 +108,7 @@ Admin
     font-size: 14px;
 }
 
-.admin-table-inner > :not(caption) > * > * {
+.admin-table-inner> :not(caption)>*>* {
     padding: 0.5rem 0.5rem;
     border-bottom-width: 0;
     box-shadow: none;
@@ -146,9 +146,11 @@ Admin
     cursor: pointer;
 }
 
+
 /**
 Table icons
  */
+
 .table-btn-edit {
     background-image: url("../assets/images/icons-V2/table-icons/edit.svg");
     background-size: 20px 20px;
@@ -162,9 +164,11 @@ Table icons
     background-image: url("../assets/images/icons-V2/table-icons/delete.svg");
 }
 
+
 /**
 Pagination
  */
+
 .pagination-sm .page-link {
     padding: 0.25rem 0.5rem;
     font-size: 14px;
@@ -178,6 +182,9 @@ Pagination
 .pagination a {
     width: 24px;
     height: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 .pagination a:hover {
