@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Author;
+use App\Models\File;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -68,7 +69,7 @@ class AuthorController extends Controller
         $this->accessEmployee();
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:3|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -76,12 +77,12 @@ class AuthorController extends Controller
                 'success' => false,
                 'errors' => $validator->errors(),
             ];
-            return response()->json($response);
+            return response()->json($response, 422);
         }
 
         Author::create($request->all());
 
-        return response()->json(['success'], 200);
+        return response()->json(['success' => true], 200);
     }
 
     /**
@@ -125,7 +126,7 @@ class AuthorController extends Controller
         $this->accessEmployee();
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:3|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -133,12 +134,12 @@ class AuthorController extends Controller
                 'success' => false,
                 'errors' => $validator->errors(),
             ];
-            return response()->json($response);
+            return response()->json($response, 422);
         }
 
         $author->fill($request->only('name', 'birthday'))->save();
 
-        return response()->json(['success']);
+        return response()->json(['success' => true], 200);
     }
 
     /**

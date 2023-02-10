@@ -98,6 +98,4 @@ export class UserService {
             this.httpOptions
         );
     }
-
-
 }

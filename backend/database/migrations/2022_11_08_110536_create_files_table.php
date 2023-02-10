@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
 
+            $table->string('name')->comment('Publikus elnevezés');
+
             $table->string('path')->comment('Elérési útvonal');
 
             $table->string('file_name')->comment('Fájl elnevezés');

@@ -74,7 +74,7 @@ export class SharedService {
         return year + "-" + month + "-" + day
     }
 
-    errorHandler = async (error: any) => {
+    errorHandler = (error: any) => {
         let message = ''
         switch (error.status) {
             case 403:

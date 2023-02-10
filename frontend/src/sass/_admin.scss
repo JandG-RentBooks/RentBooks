@@ -95,7 +95,7 @@ Covers
                 display: flex;
                 align-items: center;
                 border-radius: 5px;
-                background-color: #B3E5FC;
+                background-color: #CFD8DC;
                 input {
                     width: 110px !important;
                     height: 30px !important;
@@ -254,6 +254,7 @@ Covers
         min-height: 50vh;
         background: white;
         border-radius: 10px;
+        padding: 20px 20px 50px 20px;
     }
     .sticky-footer {
         display: flex;
@@ -340,6 +341,37 @@ Covers
     .form-select:focus {
         box-shadow: none !important;
         outline: none !important;
+    }
+
+    .file-input {
+        display: none;
+    }
+
+    .__file-upload {
+        height: 100px;
+        .file-upload{
+            margin-bottom: 0;
+        }
+    }
+
+    .__image-storage{
+        .mat-card-header-text {
+            margin: 0;
+            color: #607D8B;
+        }
+        .mat-card-actions {
+            padding: 0;
+        }
+        .mat-card-image {
+            max-height: 200px;
+        }
+        .mat-card-title {
+            font-size: 1em;
+        }
+        .mat-card-subtitle {
+            font-size: .9em;
+        }
+
     }
 }
 
@@ -437,7 +469,7 @@ Toasts
     max-width: 100%;
     font-size: 0.8rem;
     pointer-events: auto;
-    background-color: #48b6a0;
+    background-color: #78909c;
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 5px 0 15px rgba(0, 0, 0, .25);

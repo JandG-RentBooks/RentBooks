@@ -52,6 +52,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
         //Dashboard
         Route::get('dashboard', [DashboardController::class, 'index']);
+
+        //ImageStorage
+        Route::resource('image-storage', \App\Http\Controllers\Admin\ImageStorageController::class)->only(['index', 'store', 'destroy']);
     });
 
     Route::middleware('can:accessUser')->group(function () {

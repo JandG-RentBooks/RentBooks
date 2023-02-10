@@ -3,10 +3,10 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../Services/Admin/user.service";
 import {SharedService} from "../../../Services/Admin/shared.service";
 
-interface Role {
-    value: number,
-    name: string
-}
+// interface Role {
+//     value: number,
+//     name: string
+// }
 
 @Component({
     selector: 'app-user-form',
@@ -35,7 +35,6 @@ export class UserFormComponent implements OnInit {
         {id: 0, name: 'Inaktív'},
     ]
 
-    // @ts-ignore
     form = new FormGroup({
         name: new FormControl('', [Validators.required, Validators.minLength(3)]),
         email: new FormControl('', [Validators.required, Validators.email]),
@@ -57,6 +56,8 @@ export class UserFormComponent implements OnInit {
             this.form.addControl('password', new FormControl('', [Validators.required]))
             this.create()
         } else {
+            // @ts-ignore
+            this.form.addControl('password', new FormControl(''))
             this.edit()
         }
     }

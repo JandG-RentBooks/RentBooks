@@ -39,7 +39,7 @@ class CoverTypeController extends Controller
                 'name' => $coverType->name,
                 'created_at' => Carbon::create($coverType->created_at)->toDateString(),
                 'updated_at' => Carbon::create($coverType->updated_at)->toDateString(),
-                'can_delete' => $coverType->isUsed(),
+                'can_delete' => !$coverType->isUsed(),
             ];
         }
 
@@ -67,7 +67,7 @@ class CoverTypeController extends Controller
         $this->accessEmployee();
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:3|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -75,12 +75,12 @@ class CoverTypeController extends Controller
                 'success' => false,
                 'errors' => $validator->errors(),
             ];
-            return response()->json($response);
+            return response()->json($response, 422);
         }
 
         CoverType::create($request->all());
 
-        return response()->json(['success'], 200);
+        return response()->json(['success' => true], 200);
     }
 
     /**
@@ -122,7 +122,7 @@ class CoverTypeController extends Controller
         $this->accessEmployee();
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:3|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -130,12 +130,12 @@ class CoverTypeController extends Controller
                 'success' => false,
                 'errors' => $validator->errors(),
             ];
-            return response()->json($response);
+            return response()->json($response, 422);
         }
 
         $coverType->fill($request->only('name'))->save();
 
-        return response()->json(['success']);
+        return response()->json(['success' => true], 200);
     }
 
     /**

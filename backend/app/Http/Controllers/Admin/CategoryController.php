@@ -79,12 +79,12 @@ class CategoryController extends Controller
                 'success' => false,
                 'errors' => $validator->errors(),
             ];
-            return response()->json($response);
+            return response()->json($response, 422);
         }
 
         Category::create($request->all());
 
-        return response()->json(['success'], 200);
+        return response()->json(['success' => true], 200);
     }
 
     /**
@@ -142,12 +142,12 @@ class CategoryController extends Controller
                 'success' => false,
                 'errors' => $validator->errors(),
             ];
-            return response()->json($response);
+            return response()->json($response, 422);
         }
 
         $category->fill($request->only('name', 'parent_id'))->save();
 
-        return response()->json(['success']);
+        return response()->json(['success' => true], 200);
     }
 
     /**

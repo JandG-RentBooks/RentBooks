@@ -35,12 +35,11 @@ export class UserComponent implements OnInit {
     errors: any
 
     constructor(private userService: UserService, private sharedService: SharedService) {
+        this.index()
     }
 
     ngOnInit(): void {
-        this.modalError = new window.bootstrap.Modal(document.getElementById('errorModal'))
         this.modalDelete = new window.bootstrap.Modal(document.getElementById('itemDeleteModal'))
-        this.index()
     }
 
     paginate(url: string): void {
@@ -83,7 +82,6 @@ export class UserComponent implements OnInit {
     destroy(e: any): void {
         this.modalDelete.toggle()
         this.sharedService.showPostCover()
-        // @ts-ignore
         this.userService.destroy(this.selectedItem.id).subscribe({
             next: data => {
                 this.sharedService.hidePostCover()
@@ -135,9 +133,13 @@ export class UserComponent implements OnInit {
     }
 
     openErrorModal(err: any) {
-        // @ts-ignore
-        document.querySelector('.error-text').innerHTML = this.sharedService.errorHandler(err)
-        this.modalError.toggle()
+        this.modalError = new window.bootstrap.Modal(document.getElementById('errorModal'))
+        let errorText = document.querySelector('.error-text')
+        if (errorText) {
+            errorText.innerHTML = ''
+            errorText.innerHTML = this.sharedService.errorHandler(err)
+            this.modalError.toggle()
+        }
     }
 
     openDeleteModal(id: number, name: string): void {

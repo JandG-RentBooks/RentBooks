@@ -40,6 +40,24 @@ import { ErrorModalComponent } from './Admin/includes/error-modal/error-modal.co
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormToastComponent } from './Admin/includes/form-toast/form-toast.component';
 import { DeleteModalComponent } from './Admin/includes/delete-modal/delete-modal.component';
+import { ImageStorageComponent } from './Admin/image-storage/image-storage.component';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatCardModule} from "@angular/material/card";
+import { LabelDetailsComponent } from './Admin/label/label-details/label-details.component';
+import { LabelFormComponent } from './Admin/label/label-form/label-form.component';
+import { CoverTypeDetailsComponent } from './Admin/cover-type/cover-type-details/cover-type-details.component';
+import { CoverTypeFormComponent } from './Admin/cover-type/cover-type-form/cover-type-form.component';
+import { CategoryFormComponent } from './Admin/category/category-form/category-form.component';
+import { CategoryDetailsComponent } from './Admin/category/category-details/category-details.component';
+import { BookFormComponent } from './Admin/book/book-form/book-form.component';
+import { BookDetailsComponent } from './Admin/book/book-details/book-details.component';
+import { AuthorDetailsComponent } from './Admin/author/author-details/author-details.component';
+import { AuthorFormComponent } from './Admin/author/author-form/author-form.component';
+import {CdkAccordionModule} from "@angular/cdk/accordion";
+//import {BreadcrumbModule, BreadcrumbService} from "xng-breadcrumb";
+//import {BreadcrumbModule} from '@coreui/angular';
 
 
 @NgModule({
@@ -70,6 +88,17 @@ import { DeleteModalComponent } from './Admin/includes/delete-modal/delete-modal
         ErrorModalComponent,
         FormToastComponent,
         DeleteModalComponent,
+        ImageStorageComponent,
+        LabelDetailsComponent,
+        LabelFormComponent,
+        CoverTypeDetailsComponent,
+        CoverTypeFormComponent,
+        CategoryFormComponent,
+        CategoryDetailsComponent,
+        BookFormComponent,
+        BookDetailsComponent,
+        AuthorDetailsComponent,
+        AuthorFormComponent,
     ],
     imports: [
         BrowserModule,
@@ -86,7 +115,13 @@ import { DeleteModalComponent } from './Admin/includes/delete-modal/delete-modal
         MatOptionModule,
         MatInputModule,
         MatTooltipModule,
-        NgbModule
+        NgbModule,
+        MatExpansionModule,
+        MatDividerModule,
+        MatToolbarModule,
+        MatCardModule,
+        CdkAccordionModule,
+        //BreadcrumbModule
     ],
     providers: [],
     bootstrap: [AppComponent]

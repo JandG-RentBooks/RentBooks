@@ -15,6 +15,7 @@ import {CategoryComponent} from "./Admin/category/category.component";
 import {CoverTypeComponent} from "./Admin/cover-type/cover-type.component";
 import {LabelComponent} from "./Admin/label/label.component";
 import {ErrorForbiddenComponent} from "./Errors/error-forbidden/error-forbidden.component";
+import {ImageStorageComponent} from "./Admin/image-storage/image-storage.component";
 
 const routes: Routes = [
     {
@@ -36,13 +37,14 @@ const routes: Routes = [
         component: IndexComponent
     },
 
-    {path: "admin/dashboard", title: 'Dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-    {path: "admin/users", title: 'Felhasználók', component: UserComponent, canActivate: [AuthGuard, AdminGuard]},
-    {path: "admin/authors", title: 'Szerzők', component: AuthorComponent, canActivate: [AuthGuard]},
-    {path: "admin/books", title: 'Könyvek', component: BookComponent, canActivate: [AuthGuard]},
-    {path: "admin/categories", title: 'Kategóriák', component: CategoryComponent, canActivate: [AuthGuard]},
-    {path: "admin/cover-types", title: 'Borító típusok', component: CoverTypeComponent, canActivate: [AuthGuard]},
-    {path: "admin/labels", title: 'Cimkék', component: LabelComponent, canActivate: [AuthGuard]},
+    {path: "admin/dashboard", data: { breadcrumb: {alias: 'Dashboard'} }, title: 'Dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+    {path: "admin/users", title: 'Felhasználók', data: { breadcrumb: {alias: 'Felhasználók'} }, component: UserComponent, canActivate: [AuthGuard, AdminGuard]},
+    {path: "admin/authors", title: 'Szerzők', data: { breadcrumb: {alias: 'Szerzők'} }, component: AuthorComponent, canActivate: [AuthGuard]},
+    {path: "admin/books", title: 'Könyvek', data: { breadcrumb: {alias: 'Könyvek'} }, component: BookComponent, canActivate: [AuthGuard]},
+    {path: "admin/categories", title: 'Kategóriák', data: { breadcrumb: {alias: 'Kategóriák'} }, component: CategoryComponent, canActivate: [AuthGuard]},
+    {path: "admin/cover-types", title: 'Borító típusok', data: { breadcrumb: {alias: 'Borító típusok'} }, component: CoverTypeComponent, canActivate: [AuthGuard]},
+    {path: "admin/labels", title: 'Cimkék', data: { breadcrumb: {alias: 'Cimkék'} }, component: LabelComponent, canActivate: [AuthGuard]},
+    {path: "admin/image-storage", title: 'Médiatár', data: { breadcrumb: {alias: 'Médiatár'} }, component: ImageStorageComponent, canActivate: [AuthGuard]},
 
     {
         path: "forbidden",

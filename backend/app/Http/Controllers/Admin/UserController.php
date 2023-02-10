@@ -66,7 +66,7 @@ class UserController extends Controller
         $this->onlyAdmin();
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:3|max:255',
             'email' => 'required|string|email|unique:users|max:255',
             'password' => 'required|string|min:8|max:255',
             'address' => 'nullable|string|max:255',
@@ -148,7 +148,7 @@ class UserController extends Controller
 
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:3|max:255',
             'email' => 'required|string|email|max:255', Rule::unique('users')->ignore($user->id ?? 0),
             'password' => 'nullable|min:8|max:255',
             'address' => 'nullable|string|max:255',
@@ -218,7 +218,5 @@ class UserController extends Controller
         } else {
             return response()->json(['failed']);
         }
-
-
     }
 }
