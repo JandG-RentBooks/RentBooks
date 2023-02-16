@@ -20,8 +20,8 @@ export class FooterComponent implements OnInit {
     ngOnInit(): void {
         if (this.authService.isAuthenticated()) {
             this.showAdminFooter = location.href.split('/').includes('admin')
-            this.dateCopyright = new Date().getFullYear()
         }
+        this.dateCopyright = new Date().getFullYear()
     }
 
 }

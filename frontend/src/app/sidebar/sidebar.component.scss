@@ -37,12 +37,12 @@
 
     .icon {
         display: inline-block;
-        width: 20px !important;
-        height: 20px !important;
+        width: 24px !important;
+        height: 24px !important;
         background-color: transparent;
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 18px 18px;
+        background-size: 22px 22px;
         cursor: pointer;
     }
 
@@ -55,6 +55,10 @@
     .icon-authors {
         background-image: url("../../assets/images/sidebar/author.svg");
     }
+    .icon-publishers {
+        background-image: url("../../assets/images/sidebar/publishers.svg");
+    }
+
     .icon-categories {
         background-image: url("../../assets/images/sidebar/categories.svg");
     }
@@ -74,6 +78,7 @@
     .nav-link {
         color: #ECEFF1;
         flex: 1;
+        font-size: 1.3em;
     }
 
     .nav-link.active {

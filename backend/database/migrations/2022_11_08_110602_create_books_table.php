@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('title');
 
-            $table->tinyText('description');
+            $table->text('description');
 
             $table->unsignedSmallInteger('published');
 
@@ -34,6 +34,13 @@ return new class extends Migration
                 ->nullable()
                 ->references('id')
                 ->on('languages')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+
+            $table->foreignId('publisher_id')
+                ->nullable()
+                ->references('id')
+                ->on('publishers')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
 

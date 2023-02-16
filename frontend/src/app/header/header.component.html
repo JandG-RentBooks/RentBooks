@@ -10,7 +10,9 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="navbar-nav"></div>
+          <div class="navbar-nav">
+              <p-breadcrumb class=" d-none d-md-block" [model]="items!" [home]="home!"></p-breadcrumb>
+          </div>
 
             <div class="dropdown me-3">
               <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
@@ -35,37 +37,57 @@
 
 <!--Felhasználói fejléc-->
 <span *ngIf="!showAdminMenu">
-  <header class="p-3 mb-3 border-bottom">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use
-              xlink:href="#bootstrap"></use></svg>
-        </a>
-
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/" class="nav-link px-2 link-secondary">Címlap</a></li>
-            <!--          <li><a href="#" class="nav-link px-2 link-dark"></a></li>-->
-            <!--          <li><a href="#" class="nav-link px-2 link-dark"></a></li>-->
-            <!--          <li><a href="#" class="nav-link px-2 link-dark"></a></li>-->
-        </ul>
-
-        <div class="dropdown text-end">
-          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-             data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-person-circle admin-user-icon me-1"></i> <span class="d-block me-2">{{userName}}</span>
-          </a>
-          <ul class="dropdown-menu text-small" style="">
-            <li *ngIf="showAdminLink"><a class="dropdown-item" href="/admin/dashboard">Admin felület</a></li>
-            <li *ngIf="!showLoginLink"><hr class="dropdown-divider"></li>
-            <li *ngIf="showLoginLink"><a class="dropdown-item" routerLink="/login">Bejelentkezés</a></li>
-            <li><a class="dropdown-item" routerLink="/register">Regisztáció</a></li>
-            <li *ngIf="showProfileLink"><a class="dropdown-item" routerLink="#">Adataim</a></li>
-            <li *ngIf="showLogoutLink"><hr class="dropdown-divider"></li>
-            <li *ngIf="showLogoutLink"><a href="##" class="dropdown-item" (click)="logOut()">Kijelentkezés</a></li>
-          </ul>
+    <header class="front-header">
+        <div class="container front-header-container">
+            <div class="__logo d-none d-md-block me-5"></div>
+            <div class="__logo-md d-block d-md-none"></div>
+            <div class="__menu">
+                <div *ngIf="showLoginLink" class="__menu-top navbar">
+                    <a routerLink="/login" class="me-3">Bejelentkezés</a>
+                    <a routerLink="/register">Regisztálás</a>
+                </div>
+                <div *ngIf="!showLoginLink" class="__menu-top text-end">
+                    <a href="#"
+                       class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle admin-user-icon me-1"></i> <span
+                        class="d-block me-2">{{userName}}</span>
+                    </a>
+                      <ul class="dropdown-menu mt-3">
+                            <li *ngIf="showAdminLink"><a class="dropdown-item" href="/admin/dashboard">Admin felület</a></li>
+                            <li *ngIf="!showLoginLink"><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" routerLink="/register">Regisztáció</a></li>
+                            <li *ngIf="showProfileLink"><a class="dropdown-item" routerLink="#">Adataim</a></li>
+                            <li *ngIf="showLogoutLink"><hr class="dropdown-divider"></li>
+                            <li *ngIf="showLogoutLink"><a href="##" class="dropdown-item" (click)="logOut()">Kijelentkezés</a></li>
+                      </ul>
+                </div>
+                <div class="__menu-bottom">
+                    <nav class="navbar navbar-expand-md bg-transparent" aria-label="">
+                          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                  data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false"
+                                  aria-label="">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                          <div class="collapse navbar-collapse w-100" id="navbarMain">
+                            <ul class="navbar-nav mb-2 mb-md-0 w-100">
+                              <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Címlap</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Keresés</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Kölcsönzés</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link me-auto" aria-current="page" href="#">Referenciák</a>
+                              </li>
+                            </ul>
+                          </div>
+                      </nav>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
+    </header>
 </span>

@@ -50,9 +50,6 @@ export class ImageStorageComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        //this.modalError = new window.bootstrap.Modal(document.getElementById('errorModal'))
-        this.modalDelete = new window.bootstrap.Modal(document.getElementById('itemDeleteModal'))
-
     }
 
     paginate(url: string): void {
@@ -93,8 +90,20 @@ export class ImageStorageComponent implements OnInit {
         })
     }
 
-    destroy(id: number): void {
-        console.log(id)
+    destroy(e: any): void {
+        this.modalDelete.toggle()
+        this.sharedService.showPostCover()
+        this.imageStorageService.destroy(this.selectedItem.id).subscribe({
+            next: data => {
+                this.sharedService.hidePostCover()
+                console.log(data)
+                this.perPageOnChange(null)
+            },
+            error: err => {
+                this.sharedService.hidePostCover()
+                this.openErrorModal(err)
+            }
+        })
     }
 
     onFileSelected(event: any) {
@@ -137,4 +146,13 @@ export class ImageStorageComponent implements OnInit {
         }
     }
 
+    openDeleteModal(id: number, name: string): void {
+        this.modalDelete = new window.bootstrap.Modal(document.getElementById('itemDeleteModal'))
+        this.selectedItem = {id: id, name: name}
+        this.modalDelete.toggle()
+    }
+
+    closeDeleteModal(): void {
+        this.modalDelete = null
+    }
 }

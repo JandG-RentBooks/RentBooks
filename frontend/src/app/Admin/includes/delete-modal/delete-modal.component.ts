@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 
 @Component({
     selector: 'app-delete-modal',
     templateUrl: './delete-modal.component.html',
     styleUrls: ['./delete-modal.component.scss']
 })
-export class DeleteModalComponent implements OnInit {
+export class DeleteModalComponent implements OnChanges, OnInit {
 
     @Input()
     name: string | undefined
@@ -13,7 +13,17 @@ export class DeleteModalComponent implements OnInit {
     @Output()
     deleteEventEmitter = new EventEmitter()
 
+    @Output()
+    closeEventEmitter = new EventEmitter()
+
     constructor() {
+    }
+
+    strName: string | undefined
+
+    ngOnChanges() {
+        this.strName = this.name
+        console.log(this.name)
     }
 
     ngOnInit(): void {
@@ -23,4 +33,9 @@ export class DeleteModalComponent implements OnInit {
         this.deleteEventEmitter.emit()
     }
 
+    close(): void {
+        this.closeEventEmitter.emit()
+        //this.strName = undefined
+        console.log('close')
+    }
 }

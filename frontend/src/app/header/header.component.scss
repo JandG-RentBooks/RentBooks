@@ -15,6 +15,9 @@
     }
     .navbar-nav {
         flex: 1;
+        .p-element {
+            padding-left: 18px;
+        }
     }
     .navbar-toggler {
         left: 0;
@@ -44,4 +47,19 @@
     }
 }
 
-
+:host ::ng-deep .p-breadcrumb {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+}
+//:host ::ng-deep .p-breadcrumb ul li .p-menuitem-link .p-menuitem-text {
+//    color: #fff !important;
+//}
+//:host ::ng-deep .p-breadcrumb ul li .p-breadcrumb-chevron {
+//    color: #fff !important;
+//}
+//:host ::ng-deep .p-breadcrumb ul li:last-child .p-menuitem-text {
+//    color: #fff !important;
+//    font-weight: 600;
+//}

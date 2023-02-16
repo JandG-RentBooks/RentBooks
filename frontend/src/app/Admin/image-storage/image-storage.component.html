@@ -18,7 +18,7 @@
 <div id="cover" class="d-none"></div>
 
 <app-error-modal></app-error-modal>
-<app-delete-modal [name]="selectedItem?.name" (deleteEventEmitter)="destroy($event)"></app-delete-modal>
+<app-delete-modal [name]="selectedItem?.name" (deleteEventEmitter)="destroy($event)" (closeEventEmitter)="closeDeleteModal()"></app-delete-modal>
 
 <div class="admin-container pt-3">
     <div class="action-panel">
@@ -60,23 +60,23 @@
         </mat-accordion>
 
         <div class="row mt-5 __image-storage">
-        <div *ngFor="let image of mainCollection" class="col-md-2 mb-3">
-            <mat-card class="example-card">
-                <mat-card-header>
-                    <mat-card-title><span class="mat-card-title">{{image.name}}</span></mat-card-title>
-                    <mat-card-subtitle><span class="mat-card-subtitle">{{image.file_name.substring(0,30)}}</span></mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image [src]="imageUrl+image.path" alt="" class="mat-card-image">
-                <mat-card-content>
-                </mat-card-content>
-                <mat-card-actions>
-                    <span class="d-flex w-100 align-items-center justify-content-between">
-                        {{math.round(image.file_size / 1024)}} KB
-                        <mat-icon (click)="destroy(image.id)" color="warn" role="button">delete</mat-icon>
-                    </span>
-                </mat-card-actions>
-            </mat-card>
-        </div>
+            <div *ngFor="let image of mainCollection" class="col-md-2 mb-3">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <mat-card-title><span class="mat-card-title">{{image.name}}</span></mat-card-title>
+                        <mat-card-subtitle><span class="mat-card-subtitle">{{image.file_name | truncate:25}}</span></mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="imageUrl+image.path" alt="" class="mat-card-image">
+                    <mat-card-content>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <span class="d-flex w-100 align-items-center justify-content-between">
+                            {{math.round(image.file_size / 1024)}} KB
+                            <mat-icon (click)="openDeleteModal(image.id, image.name)" color="warn" role="button">delete</mat-icon>
+                        </span>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
         </div>
     </div>
 

@@ -12,13 +12,14 @@
                 <button type="button"
                         class="close"
                         data-bs-dismiss="modal"
+                        (click)="close()"
                         aria-label="">
                 </button>
             </div>
             <div class="modal-body text-center">
                     <span class="body-title">
                         Biztos benne, hogy törölni szeretné a következőt?
-                        <p class="fw-bold mt-2 mb-0">{{name}}</p>
+                        <p id="name" class="fw-bold mt-2 mb-0" [innerHTML]="strName"></p>
                     </span>
             </div>
             <div class="modal-footer d-flex align-items-center justify-content-evenly">
@@ -29,6 +30,7 @@
                 <button type="button"
                         class="px-2"
                         mat-raised-button color="accent"
+                        (click)="close()"
                         data-bs-dismiss="modal">Mégsem</button>
             </div>
         </div>

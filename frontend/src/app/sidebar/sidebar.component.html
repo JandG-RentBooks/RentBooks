@@ -1,4 +1,4 @@
-<nav *ngIf="showSidebar"  id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+<nav *ngIf="showSidebar" id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
     <div class="position-sticky sidebar-sticky">
         <div class="sidebar-header"></div>
         <ul class="nav flex-column pt-3">
@@ -21,6 +21,12 @@
                 <span class="icon icon-authors"></span>
                 <a routerLink="/admin/authors" routerLinkActive="active"  class="nav-link">Szerzők</a>
             </li>
+
+            <li class="nav-item">
+                <span class="icon icon-publishers"></span>
+                <a routerLink="/admin/publishers" routerLinkActive="active"  class="nav-link">Kiadók</a>
+            </li>
+
 
             <li class="nav-item">
                 <span class="icon icon-categories"></span>

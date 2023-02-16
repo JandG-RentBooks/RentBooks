@@ -56,8 +56,13 @@ import { BookDetailsComponent } from './Admin/book/book-details/book-details.com
 import { AuthorDetailsComponent } from './Admin/author/author-details/author-details.component';
 import { AuthorFormComponent } from './Admin/author/author-form/author-form.component';
 import {CdkAccordionModule} from "@angular/cdk/accordion";
-//import {BreadcrumbModule, BreadcrumbService} from "xng-breadcrumb";
-//import {BreadcrumbModule} from '@coreui/angular';
+import { PublisherComponent } from './Admin/publisher/publisher.component';
+import { PublisherFormComponent } from './Admin/publisher/publisher-form/publisher-form.component';
+import { PublisherDetailsComponent } from './Admin/publisher/publisher-details/publisher-details.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import { ImagesComponent } from './Admin/book/images/images.component';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+import { TruncatePipe } from './Pipes/truncate.pipe';
 
 
 @NgModule({
@@ -99,10 +104,16 @@ import {CdkAccordionModule} from "@angular/cdk/accordion";
         BookDetailsComponent,
         AuthorDetailsComponent,
         AuthorFormComponent,
+        PublisherComponent,
+        PublisherFormComponent,
+        PublisherDetailsComponent,
+        ImagesComponent,
+        TruncatePipe,
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        BreadcrumbModule,
         AppRoutingModule,
         ReactiveFormsModule,
         FormsModule,
@@ -121,7 +132,7 @@ import {CdkAccordionModule} from "@angular/cdk/accordion";
         MatToolbarModule,
         MatCardModule,
         CdkAccordionModule,
-        //BreadcrumbModule
+        MatCheckboxModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

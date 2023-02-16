@@ -52,9 +52,8 @@ main {
     transition: all 0.3s;
 }
 
-footer {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    background: white;
+@media (min-width: 1600px) {
+    .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+        max-width: 1520px !important;
+    }
 }

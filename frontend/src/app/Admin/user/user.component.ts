@@ -39,7 +39,6 @@ export class UserComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.modalDelete = new window.bootstrap.Modal(document.getElementById('itemDeleteModal'))
     }
 
     paginate(url: string): void {
@@ -97,6 +96,7 @@ export class UserComponent implements OnInit {
 
 
     openNew(): void {
+        this.selectedItem = {id: null, name: ''}
         this.sharedService.scrollTop()
         this.sharedService.hideScrollbar()
         this.showFormComponent = true
@@ -143,7 +143,12 @@ export class UserComponent implements OnInit {
     }
 
     openDeleteModal(id: number, name: string): void {
+        this.modalDelete = new window.bootstrap.Modal(document.getElementById('itemDeleteModal'))
         this.selectedItem = {id: id, name: name}
         this.modalDelete.toggle()
+    }
+
+    closeDeleteModal(): void {
+        this.modalDelete = null
     }
 }

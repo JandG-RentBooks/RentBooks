@@ -16,6 +16,7 @@ import {CoverTypeComponent} from "./Admin/cover-type/cover-type.component";
 import {LabelComponent} from "./Admin/label/label.component";
 import {ErrorForbiddenComponent} from "./Errors/error-forbidden/error-forbidden.component";
 import {ImageStorageComponent} from "./Admin/image-storage/image-storage.component";
+import {PublisherComponent} from "./Admin/publisher/publisher.component";
 
 const routes: Routes = [
     {
@@ -44,6 +45,7 @@ const routes: Routes = [
     {path: "admin/categories", title: 'Kategóriák', data: { breadcrumb: {alias: 'Kategóriák'} }, component: CategoryComponent, canActivate: [AuthGuard]},
     {path: "admin/cover-types", title: 'Borító típusok', data: { breadcrumb: {alias: 'Borító típusok'} }, component: CoverTypeComponent, canActivate: [AuthGuard]},
     {path: "admin/labels", title: 'Cimkék', data: { breadcrumb: {alias: 'Cimkék'} }, component: LabelComponent, canActivate: [AuthGuard]},
+    {path: "admin/publishers", title: 'Kiadók', data: { breadcrumb: {alias: 'Kiadók'} }, component: PublisherComponent, canActivate: [AuthGuard]},
     {path: "admin/image-storage", title: 'Médiatár', data: { breadcrumb: {alias: 'Médiatár'} }, component: ImageStorageComponent, canActivate: [AuthGuard]},
 
     {

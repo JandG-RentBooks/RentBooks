@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ImageStorageController;
+use App\Http\Controllers\Admin\PublisherController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestimonialController;
@@ -45,16 +47,20 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('admin')->middleware('can:accessEmployee')->group(function () {
         Route::resource('author', AuthorController::class);
+
+        Route::get('book/image-storage', [BookController::class, 'getImages']);
         Route::resource('book', BookController::class);
+
         Route::resource('category', CategoryController::class);
         Route::resource('cover-type', CoverTypeController::class);
         Route::resource('label', LabelController::class);
+        Route::resource('publisher', PublisherController::class);
 
         //Dashboard
         Route::get('dashboard', [DashboardController::class, 'index']);
 
         //ImageStorage
-        Route::resource('image-storage', \App\Http\Controllers\Admin\ImageStorageController::class)->only(['index', 'store', 'destroy']);
+        Route::resource('image-storage', ImageStorageController::class)->only(['index', 'store', 'destroy']);
     });
 
     Route::middleware('can:accessUser')->group(function () {

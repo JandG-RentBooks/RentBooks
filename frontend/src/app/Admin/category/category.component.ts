@@ -42,33 +42,7 @@ export class CategoryComponent implements  OnInit {
 
 
     ngOnInit(): void {
-        console.log('ngOnInit')
-        this.modalDelete = new window.bootstrap.Modal(document.getElementById('itemDeleteModal'))
     }
-
-    // paginate(url: string): void {
-    //     this.params.url = url
-    //     this.index()
-    // }
-    //
-    // perPageOnChange(e: any): void {
-    //     let url = `${API_URL}admin/category?page=1`
-    //     this.paginate(url)
-    // }
-    //
-    // search(): void {
-    //     this.isSearch = true
-    //     this.perPageOnChange(null)
-    // }
-    //
-    // searchReset(): void {
-    //     this.params.searchValue = ''
-    //     if (!this.isSearch) {
-    //         return
-    //     }
-    //     this.perPageOnChange(null)
-    //     this.isSearch = false
-    // }
 
     index(): void {
         this.categoryService.index(this.params).subscribe({
@@ -148,7 +122,11 @@ export class CategoryComponent implements  OnInit {
     }
 
     openDeleteModal(id: number, name: string): void {
+        this.modalDelete = new window.bootstrap.Modal(document.getElementById('itemDeleteModal'))
         this.selectedItem = {id: id, name: name}
         this.modalDelete.toggle()
+    }
+    closeDeleteModal(): void {
+        this.modalDelete = null
     }
 }

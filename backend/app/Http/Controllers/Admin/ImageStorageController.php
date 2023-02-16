@@ -107,9 +107,11 @@ class ImageStorageController extends Controller
      * @param \App\Models\File $file
      * @param Request $request
      */
-    public function destroy(File $file)
+    public function destroy(Request $request, $id)
     {
         $this->accessEmployee();
+
+        $file = File::find($id);
 
         if ($file->delete()) {
             return response()->json(['success']);

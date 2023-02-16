@@ -6,7 +6,9 @@ import { StorageService } from "../Services/storage.service";
 })
 export class AuthService {
 
-  constructor( private storageService: StorageService) { }
+  constructor( private storageService: StorageService) {
+
+  }
 
   isAuthenticated(){
     return this.storageService.isLoggedIn()

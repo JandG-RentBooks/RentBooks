@@ -102,7 +102,6 @@ export class LabelFormComponent implements OnInit {
         })
     }
 
-
     close(state: boolean = false): void {
         this.closeEventEmitter.emit(state)
     }

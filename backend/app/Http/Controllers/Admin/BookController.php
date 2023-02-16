@@ -5,12 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\BookAuthor;
+use App\Models\BookCategory;
+use App\Models\BookLabel;
 use App\Models\Category;
+use App\Models\CoverType;
+use App\Models\File;
 use App\Models\Label;
+use App\Models\Language;
+use App\Models\Publisher;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class BookController extends Controller
 {
@@ -26,6 +34,8 @@ class BookController extends Controller
         $query = Book::query();
         $query = $query->leftJoin('languages', 'books.language_id', '=', 'languages.id');
         $query = $query->leftJoin('cover_types', 'books.cover_type_id', '=', 'cover_types.id');
+        $query = $query->leftJoin('publishers', 'books.publisher_id', '=', 'publishers.id');
+        $query = $query->leftJoin('files', 'books.file_id', '=', 'files.id');
         $query = $query->with('authors');
 
         $query = $query->select(
@@ -34,6 +44,12 @@ class BookController extends Controller
             'languages.name as language_name',
             'cover_types.name as cover_type_name',
             'cover_types.id as cover_type_id',
+            'publishers.name as publisher',
+            'publishers.id as publisher_id',
+            'files.id as file_id',
+            'files.name as file_name',
+            'files.path as file_path',
+
         );
 
         if ($request->input('search')) {
@@ -52,10 +68,19 @@ class BookController extends Controller
         ];
 
         foreach ($books as $book) {
+            $authors = $this->getRelatedAuthors($book)->pluck('name')->toArray();
+            $strAuthors = implode(', ', $authors);
+            $categories = $this->getRelatedCategories($book)->pluck('name')->toArray();
+            $strCategories = implode(', ', $categories);
+            $labels = $this->getRelatedLabels($book)->pluck('name')->toArray();
+            $strLabels = implode(', ', $labels);
+
+
             $result['items'][] = [
                 'id' => $book->id,
                 'title' => $book->title,
                 'description' => $book->description,
+                'publisher' => $book->publisher,
                 'published' => $book->published,
                 'number_of_page' => $book->number_of_page,
                 'isbn_code' => $book->isbn_code,
@@ -66,12 +91,16 @@ class BookController extends Controller
                 'language_name' => $book->language_name,
                 'cover_type_id' => $book->cover_type_id,
                 'cover_type_name' => $book->cover_type_name,
+                'file_id' => $book->file_id,
+                'file_name' => $book->file_name,
+                'file_path' => $book->file_path,
                 'created_at' => Carbon::create($book->created_at)->toDateString(),
                 'updated_at' => Carbon::create($book->updated_at)->toDateString(),
-                'can_delete' => false, //Nem törölhető, ha szerepel
-                'authors' => $this->getRelatedAuthors($book),
-                'categories' => $this->getRelatedCategories($book),
-                'labels' => $this->getRelatedLabels($book),
+               // 'can_delete' => $this->getRelatedLendings($book)->count() == 0, //Nem törölhető, ha szerepel
+                'can_delete' => true,
+                'authors' => $strAuthors,
+                'categories' => $strCategories,
+                'labels' => $strLabels,
             ];
         }
 
@@ -89,8 +118,11 @@ class BookController extends Controller
 
         $result = [
             'categories' => $this->getPotentialCategories(),
-            'labels' => Label::all(),
-            'authors' => Author::all(),
+            'labels' => Label::select('labels.id', 'labels.name')->get(),
+            'authors' => Author::select('authors.id', 'authors.name', 'authors.birthday')->get(),
+            'publishers' => Publisher::select('publishers.id', 'publishers.name')->get(),
+            'languages' => Language::select('languages.id', 'languages.name')->get(),
+            'cover_types' => CoverType::select('cover_types.id', 'cover_types.name')->get(),
         ];
 
         return response()->json($result, 200);
@@ -108,14 +140,15 @@ class BookController extends Controller
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
-            'description' => 'required',
-            'published' => 'required|number',
+            'description' => 'required|string|max:65535',
+            'published' => 'required',
             'number_of_page' => 'required',
-            'isbn_code ' => 'required|string',
-            'in_stock ' => 'required|number',
-            'available ' => 'required|number',
+            'isbn_code' => 'required|string|unique:books',
+            'in_stock' => 'required',
+            'publisher_id' => 'nullable|exists:publishers,id',
             'language_id' => 'nullable|exists:languages,id',
             'cover_type_id' => 'nullable|exists:cover_types,id',
+            'file_id' => 'nullable|exists:files,id',
         ]);
 
         if ($validator->fails()) {
@@ -123,12 +156,23 @@ class BookController extends Controller
                 'success' => false,
                 'errors' => $validator->errors(),
             ];
-            return response()->json($response);
+            return response()->json($response, 422);
         }
 
-        Book::create($request->all());
+        $book = Book::create($request->all());
 
-        return response()->json(['success'], 200);
+        //book_author
+        foreach($request->get('authors') as $author){
+            BookAuthor::create(['book_id' => $book->id, 'author_id' => $author]);
+        }
+        //book_category
+        //
+        //book_label
+        foreach($request->get('labels') as $label){
+            BookLabel::create(['book_id' => $book->id, 'label_id' => $label]);
+        }
+
+        return response()->json(['success' => true], 200);
     }
 
     /**
@@ -162,10 +206,21 @@ class BookController extends Controller
         $this->accessEmployee();
 
         $response = [
-            'item' => Book::where('id', $book->id)->with('coverType')->with('language')->get(),
-            'authors' => $this->getRelatedAuthors($book),
-            'categories' => $this->getRelatedCategories($book),
-            'labels' => $this->getRelatedLabels($book),
+            'item' => Book::where('id', $book->id)
+                ->with('coverType')
+                ->with('language')
+                ->with('file')
+                ->with('publisher')
+                ->with('authors')
+                ->with('categories')
+                ->with('labels')
+                ->first(),
+            'categories' => $this->getPotentialCategories(),
+            'labels' => Label::select('labels.id', 'labels.name')->get(),
+            'authors' => Author::select('authors.id', 'authors.name', 'authors.birthday')->get(),
+            'publishers' => Publisher::select('publishers.id', 'publishers.name')->get(),
+            'languages' => Language::select('languages.id', 'languages.name')->get(),
+            'cover_types' => CoverType::select('cover_types.id', 'cover_types.name')->get(),
         ];
 
         return response()->json($response);
@@ -184,14 +239,15 @@ class BookController extends Controller
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
-            'description' => 'required',
-            'published' => 'required|number',
+            'description' => 'required|string|max:65535',
+            'published' => 'required',
             'number_of_page' => 'required',
-            'isbn_code ' => 'required|string',
-            'in_stock ' => 'required|number',
-            'available ' => 'required|number',
+            'isbn_code' => 'required|string', Rule::unique('books')->ignore($user->id ?? 0),
+            'in_stock' => 'required',
+            'publisher_id' => 'nullable|exists:publishers,id',
             'language_id' => 'nullable|exists:languages,id',
             'cover_type_id' => 'nullable|exists:cover_types,id',
+            'file_id' => 'nullable|exists:files,id',
         ]);
 
         if ($validator->fails()) {
@@ -199,12 +255,29 @@ class BookController extends Controller
                 'success' => false,
                 'errors' => $validator->errors(),
             ];
-            return response()->json($response);
+            return response()->json($response, 422);
         }
 
         $book->fill($request->all())->save();
 
-        return response()->json(['success']);
+        //book_author
+        BookAuthor::where('book_id', $book->id)->delete();
+        foreach($request->get('authors') as $author){
+            BookAuthor::create(['book_id' => $book->id, 'author_id' => $author]);
+        }
+        //book_category
+        BookCategory::where('book_id', $book->id)->delete();
+        BookCategory::create(['book_id' => $book->id, 'category_id' => $request->get('mainCategory')]);
+        foreach($request->get('categories') as $category){
+            BookCategory::create(['book_id' => $book->id, 'category_id' => $category]);
+        }
+        //book_label
+        BookLabel::where('book_id', $book->id)->delete();
+        foreach($request->get('labels') as $label){
+            BookLabel::create(['book_id' => $book->id, 'label_id' => $label]);
+        }
+
+        return response()->json(['success' => true], 200);
 
     }
 
@@ -214,14 +287,22 @@ class BookController extends Controller
      * @param Book $book
      * @return JsonResponse
      */
-    public function destroy(Book $book)
+    public function destroy(Request $request, Book $book)
     {
         $this->accessEmployee();
 
-        //Soft delete
+        if ($book->delete()) {
+            return response()->json(['success']);
+        } else {
+            return response()->json(['failed']);
+        }
 
     }
 
+    public function getRelatedLendings($book)
+    {
+        return $book->lendings()->get();
+    }
 
     public function getRelatedAuthors($book)
     {
@@ -243,19 +324,29 @@ class BookController extends Controller
         $query = Category::query();
         $categories = $query->whereNull('parent_id')->get();
 
-        $result = [
-            'items' => [],
-        ];
+        $result = [];
 
         foreach ($categories as $category) {
-            $result['items'][] = [
+            $result[] = [
                 'id' => $category->id,
                 'name' => $category->name,
-                'children' => Category::where('parent_id', $category->id)->get()
+                'children' => Category::select('categories.id', 'categories.name')->where('parent_id', $category->id)->get()
             ];
         }
 
         return $result;
     }
 
+    public function getImages(Request $request): JsonResponse
+    {
+        $query = File::query();
+
+        if ($request->input('search')) {
+            $query->where('name', 'LIKE', '%' . escape_like($request->input('search')) . '%');
+        }
+
+        $images = $query->get();
+
+        return response()->json($images, 200);
+    }
 }

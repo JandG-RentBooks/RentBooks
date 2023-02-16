@@ -17,13 +17,6 @@ export class ImageStorageService {
             'Authorization': `Bearer ${this.storageService.getUser().token}`
         })
     };
-    httpOptionsPost = {
-        reportProgress: true,
-        observe: 'events',
-        headers: new HttpHeaders({
-            'Authorization': `Bearer ${this.storageService.getUser().token}`
-        })
-    };
 
     constructor(private http: HttpClient, private storageService: StorageService) {
     }
@@ -43,5 +36,13 @@ export class ImageStorageService {
                 'Authorization': `Bearer ${this.storageService.getUser().token}`
             })
         });
+    }
+
+    destroy(id: number): Observable<any> {
+        this.httpOptions.params = {}
+        return this.http.delete(
+            API_URL + `admin/image-storage/${id}`,
+            this.httpOptions
+        );
     }
 }

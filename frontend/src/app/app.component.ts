@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {environment} from '../environments/environment';
 import {AuthService} from "./helper/auth.service";
+import {Router, NavigationEnd} from "@angular/router";
 
 @Component({
     selector: 'app-root',
@@ -10,7 +11,18 @@ import {AuthService} from "./helper/auth.service";
 export class AppComponent implements OnInit {
     title = 'Rent Books';
     isAdmin = false
-    constructor(private authService: AuthService) {
+    currentRoute: string | undefined;
+    constructor(private authService: AuthService, private router: Router) {
+        console.log('this.route.url')
+        console.log(this.router.url)
+        // this.router.events.subscribe((event: any) => {
+        //
+        //     if (event instanceof NavigationEnd) {
+        //         this.currentRoute = event.url;
+        //         console.log(event);
+        //     }
+        // });
+
     }
 
     ngOnInit(): void {

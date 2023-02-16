@@ -21,6 +21,7 @@ class Book extends Model
         'isbn_code',
         'in_stock',
         'available',
+        'publisher_id',
         'language_id',
         'cover_type_id',
         'file_id',
@@ -42,6 +43,21 @@ class Book extends Model
     public function language()
     {
         return $this->belongsTo(Language::class, 'language_id');
+    }
+
+    public function file()
+    {
+        return $this->belongsTo(File::class, 'file_id');
+    }
+
+    public function publisher()
+    {
+        return $this->belongsTo(Publisher::class, 'publisher_id');
+    }
+
+    public function lendings(): HasManyThrough
+    {
+        return $this->hasManyThrough(Lending::class, LendingBook::class, 'book_id', 'id', 'id', 'lending_id');
     }
 
     public function authors(): HasManyThrough

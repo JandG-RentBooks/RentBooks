@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../helper/auth.service";
 import {StorageService} from "../Services/storage.service";
-import {Router} from "@angular/router";
 import {LogoutService} from "../Services/logout.service";
+import {MenuItem} from 'primeng/api';
+import {Router, NavigationEnd} from "@angular/router";
 
 @Component({
     selector: 'app-header',
@@ -11,6 +12,20 @@ import {LogoutService} from "../Services/logout.service";
 })
 export class HeaderComponent implements OnInit {
 
+    items: MenuItem[] | undefined;
+    home: MenuItem | undefined;
+    menuStrings = [
+        {path: 'dashboard', name: 'Dashboard'},
+        {path: 'users', name: 'Felhasználók'},
+        {path: 'books', name: 'Könyvek'},
+        {path: 'authors', name: 'Szerzők'},
+        {path: 'publishers', name: 'Kiadók'},
+        {path: 'categories', name: 'Kategóriák'},
+        {path: 'cover-types', name: 'Borító típusok'},
+        {path: 'labels', name: 'Cimkék'},
+        {path: 'image-storage', name: 'Médiatár'},
+    ]
+
     showAdminMenu = false
     showLogoutLink = false
     showLoginLink = false
@@ -18,6 +33,7 @@ export class HeaderComponent implements OnInit {
     showAdminLink = false
 
     userName: string = ''
+    currentRoute: string = ''
 
     roles: any = {
         isAdmin: false,
@@ -29,7 +45,7 @@ export class HeaderComponent implements OnInit {
         private authService: AuthService,
         private storageService: StorageService,
         private logOutService: LogoutService,
-        private route: Router) {
+        private router: Router) {
     }
 
     ngOnInit(): void {
@@ -45,6 +61,28 @@ export class HeaderComponent implements OnInit {
             this.showProfileLink = true
 
             this.userName = this.authService.getUserName()
+            if (this.showAdminMenu) {
+                this.router.events.subscribe((event: any) => {
+                    if (event instanceof NavigationEnd) {
+                        this.currentRoute = event.url;
+
+                        let url = this.currentRoute.split('/')
+                        let lastItem = this.menuStrings.filter((item: any) => {
+                            if (item.path == url[2]) {
+                                return item
+                            }
+                        })
+                        console.log('lastItem')
+                        console.log(lastItem)
+                        this.items = [
+                            {label: `${url[1]}`},
+                            {label: `${lastItem[0].name}`},
+                        ];
+
+                        this.home = {icon: 'pi pi-home', routerLink: '/admin/dashboard'};
+                    }
+                });
+            }
         } else {
             this.showLoginLink = true
         }

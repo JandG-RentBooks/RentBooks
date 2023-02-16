@@ -12,7 +12,6 @@ Admin
     height: 36px;
     color: white;
     font-weight: 700;
-    font-size: 14px;
 }
 
 .admin-table> :not(caption)>*>* {
@@ -45,13 +44,13 @@ Admin
 
 .admin-table thead th {
     border-color: transparent !important;
-    font-size: 12px;
+    font-size: 1.1em;
 }
 
 .admin-table tbody {
     color: $primary-dark-active;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 1em;
     //border: 1px solid $primary-hover;
 }
 
