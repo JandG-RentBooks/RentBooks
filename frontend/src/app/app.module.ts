@@ -63,6 +63,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import { ImagesComponent } from './Admin/book/images/images.component';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import { TruncatePipe } from './Pipes/truncate.pipe';
+import { SubscriptionTypeComponent } from './Admin/subscription-type/subscription-type.component';
+import { SubscriptionTypeFormComponent } from './Admin/subscription-type/subscription-type-form/subscription-type-form.component';
 
 
 @NgModule({
@@ -109,6 +111,8 @@ import { TruncatePipe } from './Pipes/truncate.pipe';
         PublisherDetailsComponent,
         ImagesComponent,
         TruncatePipe,
+        SubscriptionTypeComponent,
+        SubscriptionTypeFormComponent,
     ],
     imports: [
         BrowserModule,

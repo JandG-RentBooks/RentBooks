@@ -1,8 +1,12 @@
 import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginService} from "../../Services/login.service";
 import {StorageService} from "../../Services/storage.service";
 import {AuthService} from "../../helper/auth.service";
 import {Router} from "@angular/router";
+import {SharedService} from "../../Services/Admin/shared.service";
+
+declare var window: any;
 
 @Component({
     selector: 'app-login',
@@ -11,21 +15,21 @@ import {Router} from "@angular/router";
 })
 
 export class LoginComponent implements OnInit {
-
-    form: any = {
-        email: null,
-        password: null
-    };
     isLoggedIn = false;
-    isLoginFailed = false;
-    errorMessage = '';
     roles: string[] = [];
+    modalError: any
+
+    form = new FormGroup({
+        email: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', [Validators.required]),
+    })
 
     constructor(
         private loginService: LoginService,
         private storageService: StorageService,
         private authService: AuthService,
-        private route: Router) {
+        private route: Router,
+        private sharedService: SharedService) {
     }
 
     ngOnInit(): void {
@@ -37,23 +41,32 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(): void {
-        const {email, password} = this.form;
-
-        this.loginService.login({email: email, password: password}).subscribe({
+        if (!this.form.valid) {
+            return
+        }
+        this.loginService.login(this.form.value).subscribe({
             next: data => {
                 if (data.success) {
                     this.storageService.setUser(data.data);
-                    this.isLoginFailed = false;
                     this.isLoggedIn = true;
                     this.roles = this.storageService.getUser().roles;
                     location.reload()
                 }
             },
             error: err => {
-                this.errorMessage = err.error.message;
-                this.isLoginFailed = true;
+                this.openErrorModal(err)
             }
         });
+    }
+
+    openErrorModal(err: any) {
+        this.modalError = new window.bootstrap.Modal(document.getElementById('errorModal'))
+        let errorText = document.querySelector('.error-text')
+        if (errorText) {
+            errorText.innerHTML = ''
+            errorText.innerHTML = this.sharedService.errorHandler(err)
+            this.modalError.toggle()
+        }
     }
 
 }

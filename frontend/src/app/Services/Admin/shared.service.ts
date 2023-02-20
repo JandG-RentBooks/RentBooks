@@ -14,6 +14,7 @@ export class SharedService {
         confirm_add: 'Biztos benne, hogy szeretné hozzáadni?',
         confirm_delete: 'Biztos benne, hogy törölni szeretné?',
         error_403: 'Nem engedélyezett művelet',
+        error_401: 'Nem található felhasználó a megadott bejelentkezési adatokkal.',
         error_message: 'A művelet során nem várt hiba lépett fel.',
     }
 
@@ -77,9 +78,13 @@ export class SharedService {
     errorHandler = (error: any) => {
         let message = ''
         switch (error.status) {
+            case 401:
+                message = this.texts.error_401
+                break
             case 403:
                 message = this.texts.error_403
                 break
+
             case 422:
                 let errors = Object.values(error.error.errors)
                 for (let i in errors) {

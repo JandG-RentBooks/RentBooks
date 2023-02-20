@@ -3,11 +3,6 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../Services/Admin/user.service";
 import {SharedService} from "../../../Services/Admin/shared.service";
 
-// interface Role {
-//     value: number,
-//     name: string
-// }
-
 @Component({
     selector: 'app-user-form',
     templateUrl: './user-form.component.html',
@@ -26,7 +21,7 @@ export class UserFormComponent implements OnInit {
     errorEventEmitter = new EventEmitter()
 
 
-    constructor(private userService: UserService, private fb: FormBuilder, private sharedService: SharedService) {
+    constructor(private userService: UserService, private sharedService: SharedService) {
     }
 
     roleList: any = []

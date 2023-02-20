@@ -17,12 +17,32 @@ export class LoginService {
     constructor(private http: HttpClient) {
     }
 
+    index(): Observable<any> {
+        return this.http.get(API_URL + 'register', httpOptions);
+    }
+
     login(data: any): Observable<any> {
         return this.http.post(
             API_URL + 'login',
             {
                 email: data.email,
                 password: data.password,
+            },
+            httpOptions
+        );
+    }
+
+    register(data: any): Observable<any> {
+        return this.http.post(
+            API_URL + 'register',
+            {
+                name: data.name,
+                email: data.email,
+                address: data.address,
+                phone_number: data.phone_number,
+                password: data.password,
+                c_password: data.c_password,
+                subscription_type_id: data.subscription_type_id,
             },
             httpOptions
         );

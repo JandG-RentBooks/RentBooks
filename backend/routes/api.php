@@ -30,6 +30,7 @@ use App\Http\Controllers\Auth\RegisterController;
 */
 
 Route::controller(RegisterController::class)->group(function(){
+    Route::get('register', 'index');
     Route::post('register', 'register');
     Route::post('login', 'login');
 });

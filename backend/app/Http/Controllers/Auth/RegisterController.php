@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\SubscriptionType;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\BaseController;
@@ -13,6 +14,11 @@ use Dirape\Token\Token;
 class RegisterController extends BaseController
 {
 
+    public function index(Request $request)
+    {
+        return response()->json(SubscriptionType::all(), 200);
+    }
+
     /**
      * Register api
      *
@@ -23,14 +29,19 @@ class RegisterController extends BaseController
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users|max:255',
-            'password' => 'required',
+            'password' => 'required|min:8',
             'c_password' => 'required|same:password',
             'address' => 'required|max:255',
             'phone_number' => 'nullable|max:255',
+            'subscription_type_id' => 'nullable|exists:subscription_types,id',
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors());
+            $response = [
+                'success' => false,
+                'errors' => $validator->errors(),
+            ];
+            return response()->json($response, 422);
         }
 
         $input = $request->all();
@@ -44,9 +55,7 @@ class RegisterController extends BaseController
             'role_id' => 2
         ]);
 
-        $success['token'] = $user->createToken('LandBooks')->plainTextToken;
-
-        return $this->sendResponse($success);
+        return response()->json(['success' => true, 'id' => $user->id,], 200);
     }
 
     /**
@@ -63,15 +72,15 @@ class RegisterController extends BaseController
 
         $credentials = $request->only(['email', 'password']);
 
-		if(Auth::attempt($credentials)){
-			$user = Auth::user();
-			$success['token'] = $user->createToken('LandBooks')->plainTextToken;
-			$success['name'] = $user->name;
-			$success['roles'] = $user->roles->pluck('reference');
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $success['token'] = $user->createToken('LandBooks')->plainTextToken;
+            $success['name'] = $user->name;
+            $success['roles'] = $user->roles->pluck('reference');
 
-			return $this->sendResponse($success);
-		}else{
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+            return $this->sendResponse($success);
+        } else {
+            return response()->json(['success' => false], 401);
         }
     }
 

@@ -1,57 +1,26 @@
-<div class="container">
-  <div class="row d-flex flex-column align-items-center justify-content-center">
-    <div class="col-md-4">
-      <div class="card card-container m-5 p-3">
-        <form *ngIf="!isLoggedIn" name="form"
-              (ngSubmit)="f.form.valid && onSubmit()"
-              #f="ngForm"
-              novalidate>
+<div class="container front-container d-flex align-items-center justify-content-center">
+      <div class="card card-container-login m-5 p-3">
+          <div class="card-header">Bejelentkezés</div>
+          <div class="card-body">
+              <form [formGroup]="form" class="d-flex flex-column" (ngSubmit)="onSubmit()">
+                  <mat-form-field appearance="fill">
+                      <mat-label>Email cím</mat-label>
+                      <input matInput formControlName="email" type="email">
+                      <mat-error *ngIf="form.controls['email'].hasError('required')">Az email cím megadása kötelező.</mat-error>
+                      <mat-error *ngIf="form.controls['email'].hasError('email')">Érvényes email cím megadása kötelező.</mat-error>
+                  </mat-form-field>
 
-          <div class="form-group _form-group-admin mb-3">
-            <label>Email cím</label>
-            <input
-              type="email"
-              class="form-control"
-              name="email"
-              [(ngModel)]="form.email"
-              required
-              #email="ngModel"
-              [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
-            />
-            <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
-              Az email cím megadása kötelező
-            </div>
-          </div>
-          <div class="form-group _form-group-admin mb-5">
-            <label>Jelszó</label>
-            <input
-              type="password"
-              class="form-control"
-              name="password"
-              [(ngModel)]="form.password"
-              required
-              minlength="6"
-              #password="ngModel"
-              [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
-            />
-            <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
-              <div *ngIf="password.errors['required']">A jelszó megadása kötelező</div>
-              <div *ngIf="password.errors['minlength']">A jelszónak legalább 6 kerakteresnek kell lennie.</div>
-            </div>
-          </div>
-          <div class="form-group _form-group-admin mb-2 text-center">
-            <button type="submit" class="btn btn-primary">
-              Bejelentkezés
-            </button>
-          </div>
-          <div class="form-group">
-            <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
-              Login failed: {{ errorMessage }}
-            </div>
-          </div>
-        </form>
+                  <mat-form-field appearance="fill" class="mt-2">
+                      <mat-label>Jelszó</mat-label>
+                      <input matInput formControlName="password" type="password">
+                      <mat-error *ngIf="form.controls['password'].hasError('required')">A jelszó megadása kötelező.</mat-error>
+                  </mat-form-field>
+
+                  <button type="submit" class="btn-login mt-3">
+                      Bejelentkezés
+                  </button>
+              </form>
       </div>
-    </div>
-  </div>
+      </div>
 </div>
-
+<app-error-modal></app-error-modal>

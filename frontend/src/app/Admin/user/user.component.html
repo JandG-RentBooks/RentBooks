@@ -58,7 +58,7 @@
             <td>{{ row.email }}</td>
             <td>{{ row.address }}</td>
             <td>{{ row.phone_number }}</td>
-            <td>{{ row.subscription_type?.name }}</td>
+            <td matTooltip="{{row.subscription_type?.description}}">{{ row.subscription_type?.book_number }}</td>
             <td class="text-center">
                 <span class="btn-action table-btn-edit d-inline-block" matTooltip="Tétel szerkesztése"
                       matTooltipPosition="left" matTooltipClass="" (click)="openEdit(row.id, row.name)"></span>

@@ -31,7 +31,7 @@ export class SidebarComponent implements OnInit {
             this.roles.isAdmin = this.authService.isAdmin()
             this.roles.isEmployee = this.authService.isEmployee()
 
-            this.showSidebar = location.href.split('/').includes('admin')
+            this.showSidebar = location.href.split('/').includes('admin') && (this.authService.isAdmin() || this.authService.isEmployee())
             this.showLogoutLink = true
 
             this.userName = this.authService.getUserName()
