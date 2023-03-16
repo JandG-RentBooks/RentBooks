@@ -116,6 +116,6 @@ export class CategoryFormComponent implements OnInit {
     }
 
     setError(err: any) {
-        this.errorEventEmitter.emit(err)
+        //this.errorEventEmitter.emit(err)
     }
 }

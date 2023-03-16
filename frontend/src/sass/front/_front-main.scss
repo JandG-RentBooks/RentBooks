@@ -1,0 +1,23 @@
+@import '../variables';
+
+.list-group {
+
+    .list-group-item {
+        padding: 18px 12px;
+        color: #3e5064;
+        background-color: transparent;
+    }
+
+    .list-group-item:hover {
+        color: white;
+        background-color: #3e5064;
+    }
+
+    .list-group-item.active {
+        z-index: 2;
+        color: white;
+        background-color: #273749;
+        border-color: #273749;
+        font-weight: bold;
+    }
+}

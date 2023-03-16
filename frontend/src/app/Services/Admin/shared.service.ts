@@ -77,26 +77,34 @@ export class SharedService {
 
     errorHandler = (error: any) => {
         let message = ''
-        switch (error.status) {
-            case 401:
-                message = this.texts.error_401
-                break
-            case 403:
-                message = this.texts.error_403
-                break
+        if (error.status) {
+            switch (error.status) {
+                case 401:
+                    message = this.texts.error_401
+                    break
+                case 403:
+                    message = this.texts.error_403
+                    break
 
-            case 422:
-                let errors = Object.values(error.error.errors)
-                for (let i in errors) {
-                    // @ts-ignore
-                    message += `${errors[i][0]}<br>`
-                }
-                break
-            case 500:
-                message = this.texts.error_message
-                break
-            default:
-                message = this.texts.error_message
+                case 422:
+                    let errors = Object.values(error.error.errors)
+                    for (let i in errors) {
+                        // @ts-ignore
+                        message += `${errors[i][0]}<br>`
+                    }
+                    break
+                case 500:
+                    message = this.texts.error_message
+                    break
+                default:
+                    message = this.texts.error_message
+            }
+        } else {
+            let errors = Object.values(error.errors)
+            for (let i in errors) {
+                // @ts-ignore
+                message += `${errors[i][0]}<br>`
+            }
         }
         return message
     }

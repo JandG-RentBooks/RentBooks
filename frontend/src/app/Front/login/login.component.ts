@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
                 }
             },
             error: err => {
-                this.openErrorModal(err)
+                //this.openErrorModal(err)
             }
         });
     }

@@ -14,28 +14,33 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function __construct()
+    {
+
+    }
+
     /**
      * @return JsonResponse|void
      */
     protected function onlyAdmin()
     {
         if (!auth()->user()->hasRole('admin')) {
-            return response()->json([], 403);
+            return response()->json([], 404);
         }
     }
 
-        /**
+    /**
      * @return JsonResponse|void
      */
     protected function accessEmployee()
     {
         if (!auth()->user()->hasRole('admin') || !auth()->user()->hasRole('employee')) {
-            return response()->json([], 403);
+            return response()->json([], 404);
         }
     }
 
     /**
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return int
      */
@@ -47,23 +52,23 @@ class Controller extends BaseController
     }
 
     /**
-     * @param  LengthAwarePaginator  $collection
+     * @param LengthAwarePaginator $collection
      *
      * @return array
      */
     protected function getPaginationForJson(LengthAwarePaginator $collection): array
     {
         return [
-            'total'        => $collection->total(),
-            'last_page'    => $collection->lastPage(),
+            'total' => $collection->total(),
+            'last_page' => $collection->lastPage(),
             'current_page' => $collection->currentPage(),
-            'per_page'     => $collection->perPage(),
-            'links'        => $collection->linkCollection(),
+            'per_page' => $collection->perPage(),
+            'links' => $collection->linkCollection(),
         ];
     }
 
     /**
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return array|null
      */
@@ -81,7 +86,7 @@ class Controller extends BaseController
 
                 return [
                     'column' => $column,
-                    'dir'    => $direction,
+                    'dir' => $direction,
                 ];
             }
         }

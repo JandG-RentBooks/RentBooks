@@ -45,7 +45,7 @@ export class BookFormComponent implements OnInit {
         number_of_page: new FormControl('', [Validators.required]),
         isbn_code: new FormControl('', [Validators.required]),
         in_stock: new FormControl('', [Validators.required]),
-        is_new: new FormControl(''),
+        is_new: new FormControl(0),
         language_id: new FormControl('', [Validators.required]),
         cover_type_id: new FormControl('', [Validators.required]),
         publisher_id: new FormControl('', [Validators.required]),
@@ -271,7 +271,7 @@ export class BookFormComponent implements OnInit {
     }
 
     setError(err: any) {
-        this.errorEventEmitter.emit(err)
+        //this.errorEventEmitter.emit(err)
     }
 
     openImages(): void {

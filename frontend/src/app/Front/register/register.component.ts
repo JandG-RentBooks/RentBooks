@@ -68,12 +68,14 @@ export class RegisterComponent implements OnInit {
                 }
             },
             error: err => {
-                this.openErrorModal(err)
+                //this.openErrorModal(err)
             }
         });
     }
 
     openErrorModal(err: any) {
+        console.log('openErrorModal')
+        //console.log(err)
         this.modalError = new window.bootstrap.Modal(document.getElementById('errorModal'))
         let errorText = document.querySelector('.error-text')
         if (errorText) {

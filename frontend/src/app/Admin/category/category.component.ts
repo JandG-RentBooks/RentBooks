@@ -68,7 +68,7 @@ export class CategoryComponent implements  OnInit {
             },
             error: err => {
                 this.sharedService.hidePostCover()
-                this.openErrorModal(err)
+                //this.openErrorModal(err)
             }
         })
     }

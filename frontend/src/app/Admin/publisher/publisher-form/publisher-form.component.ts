@@ -108,6 +108,6 @@ export class PublisherFormComponent {
     }
 
     setError(err: any) {
-        this.errorEventEmitter.emit(err)
+        //this.errorEventEmitter.emit(err)
     }
 }

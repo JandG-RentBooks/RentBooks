@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {LabelService} from "../../../Services/Admin/label.service";
 import {SharedService} from "../../../Services/Admin/shared.service";
 
@@ -19,7 +19,7 @@ export class LabelFormComponent implements OnInit {
     @Output()
     errorEventEmitter = new EventEmitter()
 
-    constructor(private labelService: LabelService, private fb: FormBuilder, private sharedService: SharedService) {
+    constructor(private labelService: LabelService, private sharedService: SharedService) {
     }
 
     form = new FormGroup({
@@ -107,6 +107,6 @@ export class LabelFormComponent implements OnInit {
     }
 
     setError(err: any) {
-        this.errorEventEmitter.emit(err)
+        //this.errorEventEmitter.emit(err)
     }
 }

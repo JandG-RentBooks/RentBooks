@@ -88,7 +88,7 @@ export class BookComponent implements OnInit {
             },
             error: err => {
                 this.sharedService.hidePostCover()
-                this.openErrorModal(err)
+                //this.openErrorModal(err)
             }
         })
     }

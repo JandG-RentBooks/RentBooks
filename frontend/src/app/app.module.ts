@@ -21,7 +21,7 @@ import {TopSectionComponent} from './index/top-section/top-section.component';
 import {LastRentedComponent} from './index/last-rented/last-rented.component';
 import {TestimonialComponent} from './index/testimonial/testimonial.component';
 import {ErrorNotFoundComponent} from './Errors/error-not-found/error-not-found.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {ErrorForbiddenComponent} from './Errors/error-forbidden/error-forbidden.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { UserFormComponent } from './Admin/user/user-form/user-form.component';
@@ -65,6 +65,17 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
 import { TruncatePipe } from './Pipes/truncate.pipe';
 import { SubscriptionTypeComponent } from './Admin/subscription-type/subscription-type.component';
 import { SubscriptionTypeFormComponent } from './Admin/subscription-type/subscription-type-form/subscription-type-form.component';
+import {AuthInterceptor} from "./auth.interceptor";
+import {MatDialogModule} from "@angular/material/dialog";
+import {CarouselModule} from "primeng/carousel";
+import { ErrorAuthComponent } from './Errors/error-auth/error-auth.component';
+import { ErrorAdminComponent } from './Errors/error-admin/error-admin.component';
+import { ProfileComponent } from './Front/profile/profile.component';
+import { WishListComponent } from './Front/Profile/wish-list/wish-list.component';
+import { MyCurrentRentComponent } from './Front/Profile/my-current-rent/my-current-rent.component';
+import { MyRentsComponent } from './Front/Profile/my-rents/my-rents.component';
+import { MyDataComponent } from './Front/Profile/my-data/my-data.component';
+import { BooksComponent } from './Front/books/books.component';
 
 
 @NgModule({
@@ -113,6 +124,14 @@ import { SubscriptionTypeFormComponent } from './Admin/subscription-type/subscri
         TruncatePipe,
         SubscriptionTypeComponent,
         SubscriptionTypeFormComponent,
+        ErrorAuthComponent,
+        ErrorAdminComponent,
+        ProfileComponent,
+        WishListComponent,
+        MyCurrentRentComponent,
+        MyRentsComponent,
+        MyDataComponent,
+        BooksComponent,
     ],
     imports: [
         BrowserModule,
@@ -137,8 +156,12 @@ import { SubscriptionTypeFormComponent } from './Admin/subscription-type/subscri
         MatCardModule,
         CdkAccordionModule,
         MatCheckboxModule,
+        MatDialogModule,
+        CarouselModule,
     ],
-    providers: [],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

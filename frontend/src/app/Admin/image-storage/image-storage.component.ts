@@ -101,7 +101,7 @@ export class ImageStorageComponent implements OnInit {
             },
             error: err => {
                 this.sharedService.hidePostCover()
-                this.openErrorModal(err)
+                //this.openErrorModal(err)
             }
         })
     }
@@ -130,7 +130,7 @@ export class ImageStorageComponent implements OnInit {
             error: err => {
                 console.log(err)
                 this.sharedService.hidePostCover()
-                this.openErrorModal(err)
+                //this.openErrorModal(err)
             }
         })
     }

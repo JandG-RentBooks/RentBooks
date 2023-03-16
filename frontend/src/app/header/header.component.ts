@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
         {path: 'cover-types', name: 'Borító típusok'},
         {path: 'labels', name: 'Cimkék'},
         {path: 'image-storage', name: 'Médiatár'},
+        {path: 'subscription-type', name: 'Előfizetés típusok'},
     ]
 
     showAdminMenu = false

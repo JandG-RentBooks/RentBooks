@@ -21,4 +21,9 @@ class SubscriptionType extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

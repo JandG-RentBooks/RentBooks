@@ -17,6 +17,10 @@ import {LabelComponent} from "./Admin/label/label.component";
 import {ErrorForbiddenComponent} from "./Errors/error-forbidden/error-forbidden.component";
 import {ImageStorageComponent} from "./Admin/image-storage/image-storage.component";
 import {PublisherComponent} from "./Admin/publisher/publisher.component";
+import {SubscriptionTypeComponent} from "./Admin/subscription-type/subscription-type.component";
+import {ProfileComponent} from "./Front/profile/profile.component";
+import {BooksComponent} from "./Front/books/books.component";
+import {BookDetailsComponent} from "./Front/book-details/book-details.component";
 
 const routes: Routes = [
     {
@@ -37,16 +41,91 @@ const routes: Routes = [
         path: "index",
         component: IndexComponent
     },
+    {
+        path: "books",
+        component: BooksComponent
+    },
+    {
+        path: "books/:id",
+        component: BookDetailsComponent
+    },
 
-    {path: "admin/dashboard", data: { breadcrumb: {alias: 'Dashboard'} }, title: 'Dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-    {path: "admin/users", title: 'Felhasználók', data: { breadcrumb: {alias: 'Felhasználók'} }, component: UserComponent, canActivate: [AuthGuard, AdminGuard]},
-    {path: "admin/authors", title: 'Szerzők', data: { breadcrumb: {alias: 'Szerzők'} }, component: AuthorComponent, canActivate: [AuthGuard]},
-    {path: "admin/books", title: 'Könyvek', data: { breadcrumb: {alias: 'Könyvek'} }, component: BookComponent, canActivate: [AuthGuard]},
-    {path: "admin/categories", title: 'Kategóriák', data: { breadcrumb: {alias: 'Kategóriák'} }, component: CategoryComponent, canActivate: [AuthGuard]},
-    {path: "admin/cover-types", title: 'Borító típusok', data: { breadcrumb: {alias: 'Borító típusok'} }, component: CoverTypeComponent, canActivate: [AuthGuard]},
-    {path: "admin/labels", title: 'Cimkék', data: { breadcrumb: {alias: 'Cimkék'} }, component: LabelComponent, canActivate: [AuthGuard]},
-    {path: "admin/publishers", title: 'Kiadók', data: { breadcrumb: {alias: 'Kiadók'} }, component: PublisherComponent, canActivate: [AuthGuard]},
-    {path: "admin/image-storage", title: 'Médiatár', data: { breadcrumb: {alias: 'Médiatár'} }, component: ImageStorageComponent, canActivate: [AuthGuard]},
+    {
+        path: "profile",
+        title: 'Adataim',
+        component: ProfileComponent
+    },
+
+    {
+        path: "admin/dashboard",
+        data: {breadcrumb: {alias: 'Dashboard'}},
+        title: 'Dashboard',
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "admin/users",
+        title: 'Felhasználók',
+        data: {breadcrumb: {alias: 'Felhasználók'}},
+        component: UserComponent,
+        canActivate: [AuthGuard, AdminGuard]
+    },
+    {
+        path: "admin/authors",
+        title: 'Szerzők',
+        data: {breadcrumb: {alias: 'Szerzők'}},
+        component: AuthorComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "admin/books",
+        title: 'Könyvek',
+        data: {breadcrumb: {alias: 'Könyvek'}},
+        component: BookComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "admin/categories",
+        title: 'Kategóriák',
+        data: {breadcrumb: {alias: 'Kategóriák'}},
+        component: CategoryComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "admin/cover-types",
+        title: 'Borító típusok',
+        data: {breadcrumb: {alias: 'Borító típusok'}},
+        component: CoverTypeComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "admin/labels",
+        title: 'Cimkék',
+        data: {breadcrumb: {alias: 'Cimkék'}},
+        component: LabelComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "admin/publishers",
+        title: 'Kiadók',
+        data: {breadcrumb: {alias: 'Kiadók'}},
+        component: PublisherComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "admin/image-storage",
+        title: 'Médiatár',
+        data: {breadcrumb: {alias: 'Médiatár'}},
+        component: ImageStorageComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "admin/subscription-type",
+        title: 'Előfizetés típusok',
+        data: {breadcrumb: {alias: 'Előfizetés típusok\''}},
+        component: SubscriptionTypeComponent,
+        canActivate: [AuthGuard]
+    },
 
     {
         path: "forbidden",

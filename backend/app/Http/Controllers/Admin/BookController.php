@@ -166,7 +166,10 @@ class BookController extends Controller
             BookAuthor::create(['book_id' => $book->id, 'author_id' => $author]);
         }
         //book_category
-        //
+        BookCategory::create(['book_id' => $book->id, 'category_id' => $request->get('mainCategory')]);
+        foreach($request->get('categories') as $category){
+            BookCategory::create(['book_id' => $book->id, 'category_id' => $category]);
+        }
         //book_label
         foreach($request->get('labels') as $label){
             BookLabel::create(['book_id' => $book->id, 'label_id' => $label]);

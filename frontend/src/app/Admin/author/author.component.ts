@@ -73,6 +73,7 @@ export class AuthorComponent implements OnInit {
                 this.total = data.pagination.total
             },
             error: err => {
+                //this.openErrorModal(err)
             }
         })
     }
@@ -88,7 +89,7 @@ export class AuthorComponent implements OnInit {
             },
             error: err => {
                 this.sharedService.hidePostCover()
-                this.openErrorModal(err)
+                //this.openErrorModal(err)
             }
         })
     }

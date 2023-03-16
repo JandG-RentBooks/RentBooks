@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ImageStorageController;
 use App\Http\Controllers\Admin\PublisherController;
+use App\Http\Controllers\Admin\SubscriptionTypeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestimonialController;
@@ -29,16 +30,15 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-Route::controller(RegisterController::class)->group(function(){
+Route::controller(RegisterController::class)->group(function () {
     Route::get('register', 'index');
     Route::post('register', 'register');
     Route::post('login', 'login');
 });
 
-Route::controller(HomeController::class)->group(function(){
-    //Címlap
-    Route::get('testimonial', [TestimonialController::class, 'index']);
-});
+//Címlap
+Route::get('testimonial', [TestimonialController::class, 'index']);
+Route::get('last-rented', [HomeController::class, 'getLastRented']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [RegisterController::class, 'logout']);
@@ -56,6 +56,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::resource('cover-type', CoverTypeController::class);
         Route::resource('label', LabelController::class);
         Route::resource('publisher', PublisherController::class);
+        Route::resource('subscription-type', SubscriptionTypeController::class);
 
         //Dashboard
         Route::get('dashboard', [DashboardController::class, 'index']);

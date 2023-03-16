@@ -9,20 +9,14 @@ import {Router, NavigationEnd} from "@angular/router";
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
     title = 'Rent Books';
     isAdmin = false
     currentRoute: string | undefined;
+
     constructor(private authService: AuthService, private router: Router) {
         console.log('this.route.url')
         console.log(this.router.url)
-        // this.router.events.subscribe((event: any) => {
-        //
-        //     if (event instanceof NavigationEnd) {
-        //         this.currentRoute = event.url;
-        //         console.log(event);
-        //     }
-        // });
-
     }
 
     ngOnInit(): void {
