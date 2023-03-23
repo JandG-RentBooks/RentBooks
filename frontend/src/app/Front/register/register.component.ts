@@ -5,7 +5,6 @@ import {StorageService} from "../../Services/storage.service";
 import {AuthService} from "../../helper/auth.service";
 import {Router} from "@angular/router";
 import {SharedService} from "../../Services/Admin/shared.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
 
 declare var window: any;
 
@@ -63,7 +62,7 @@ export class RegisterComponent implements OnInit {
                 if (data.success) {
                     this.isMessage = true
                     this.sharedService.sleep(2000).then(() => {
-                        location.reload()
+                        location.href = '/'
                     })
                 }
             },

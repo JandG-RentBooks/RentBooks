@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SubscriptionTypeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\WishlistController;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,9 @@ Route::controller(RegisterController::class)->group(function () {
 //Címlap
 Route::get('testimonial', [TestimonialController::class, 'index']);
 Route::get('last-rented', [HomeController::class, 'getLastRented']);
+Route::get('books', [\App\Http\Controllers\BookController::class, 'index']);
+Route::get('books/{book}', [\App\Http\Controllers\BookController::class, 'details']);
+Route::get('book-categories', [\App\Http\Controllers\BookController::class, 'getCategories']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [RegisterController::class, 'logout']);
@@ -68,8 +72,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('can:accessUser')->group(function () {
         //Profile
         Route::get('profile/user', [ProfileController::class, 'getUser']);
-        Route::get('profile/testimonials', [ProfileController::class, 'getTestimonials']);
+        Route::get('profile/wishlist', [ProfileController::class, 'getWishlist']);
+        Route::patch('profile/wishlist', [ProfileController::class, 'sortWishlist']);
+        Route::post('profile/wishlist/delete', [ProfileController::class, 'removeWisList']);
         //Wishlist
-        Route::resource('wishlist', Wishlist::class);
+        Route::post('books/{book}/wishlist', [\App\Http\Controllers\BookController::class, 'changeWisListStatus']);
+        Route::get('books/{book}/wishlist', [\App\Http\Controllers\BookController::class, 'checkWisListStatus']);
     });
 });

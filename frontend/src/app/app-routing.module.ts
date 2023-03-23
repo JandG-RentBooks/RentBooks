@@ -20,7 +20,6 @@ import {PublisherComponent} from "./Admin/publisher/publisher.component";
 import {SubscriptionTypeComponent} from "./Admin/subscription-type/subscription-type.component";
 import {ProfileComponent} from "./Front/profile/profile.component";
 import {BooksComponent} from "./Front/books/books.component";
-import {BookDetailsComponent} from "./Front/book-details/book-details.component";
 
 const routes: Routes = [
     {
@@ -44,10 +43,6 @@ const routes: Routes = [
     {
         path: "books",
         component: BooksComponent
-    },
-    {
-        path: "books/:id",
-        component: BookDetailsComponent
     },
 
     {

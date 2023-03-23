@@ -1,1 +1,10 @@
-<p>wish-list works!</p>
+<div class="page-title w-100 text-center mb-5">Kivánságlista összeállítása</div>
+<div *ngIf="wishlist.length > 0" cdkDropList class="wish-drag-list" (cdkDropListDropped)="drop($event)">
+    <div class="wishlist-box" *ngFor="let item of wishlist" cdkDrag>
+        <div class="wishlist-placeholder" *cdkDragPlaceholder matchSize="true"></div>
+        <span class="__title">{{item.title}}</span>
+        <span class="__delete">
+            <mat-icon (click)="remove(item.id)" color="white" role="button">delete</mat-icon>
+        </span>
+    </div>
+</div>

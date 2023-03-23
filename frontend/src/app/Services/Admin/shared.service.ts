@@ -6,6 +6,7 @@ import {Injectable} from '@angular/core';
 export class SharedService {
 
     postCover = document.querySelector('#postCover')
+    uiCover = document.querySelector('#uiCover')
 
     texts = {
         msg_creation_success: 'A tétel mentése sikeres!',
@@ -35,6 +36,19 @@ export class SharedService {
         this.sleep(500).then(() => {
             if (this.postCover !== null) {
                 this.postCover.classList.add('d-none')
+            }
+        })
+    }
+    showUiCover() {
+        if (this.uiCover !== null) {
+            this.uiCover.classList.remove('d-none')
+        }
+    }
+
+    hideUiCover() {
+        this.sleep(500).then(() => {
+            if (this.uiCover !== null) {
+                this.uiCover.classList.add('d-none')
             }
         })
     }

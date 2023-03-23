@@ -76,6 +76,14 @@ import { MyCurrentRentComponent } from './Front/Profile/my-current-rent/my-curre
 import { MyRentsComponent } from './Front/Profile/my-rents/my-rents.component';
 import { MyDataComponent } from './Front/Profile/my-data/my-data.component';
 import { BooksComponent } from './Front/books/books.component';
+import { WishlistComponent } from './Front/books/wishlist/wishlist.component';
+import { FrontBookDetailsComponent } from './Front/book-details/book-details.component';
+import { ErrorLoginComponent } from './Errors/error-login/error-login.component';
+import {MatMenuModule} from "@angular/material/menu";
+import {MatListModule} from "@angular/material/list";
+import { SubscriptionInformationComponent } from './Front/profile/subscription-information/subscription-information.component';
+import {CdkDrag, CdkDragPlaceholder, CdkDropList} from "@angular/cdk/drag-drop";
+import {MatTabsModule} from "@angular/material/tabs";
 
 
 @NgModule({
@@ -132,6 +140,10 @@ import { BooksComponent } from './Front/books/books.component';
         MyRentsComponent,
         MyDataComponent,
         BooksComponent,
+        FrontBookDetailsComponent,
+        WishlistComponent,
+        ErrorLoginComponent,
+        SubscriptionInformationComponent,
     ],
     imports: [
         BrowserModule,
@@ -158,6 +170,12 @@ import { BooksComponent } from './Front/books/books.component';
         MatCheckboxModule,
         MatDialogModule,
         CarouselModule,
+        MatMenuModule,
+        MatListModule,
+        CdkDropList,
+        CdkDrag,
+        CdkDragPlaceholder,
+        MatTabsModule,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

@@ -14,13 +14,13 @@
               <p-breadcrumb class=" d-none d-md-block" [model]="items!" [home]="home!"></p-breadcrumb>
           </div>
 
-            <div class="dropdown me-3">
+            <div class="dropdown me-5">
               <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
                  data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-person-circle admin-user-icon me-1"></i> <span
                   class="d-block me-2 username">{{userName}}</span>
               </a>
-              <ul class="dropdown-menu text-small" style="">
+              <ul class="dropdown-menu text-small me-2" style="">
                 <li><a class="dropdown-item" href="/">Felhasználói felület</a></li>
 <!--                <li *ngIf="!showLoginLink"><hr class="dropdown-divider"></li>-->
 <!--                <li *ngIf="showLoginLink"><a class="dropdown-item" routerLink="/login">Bejelentkezés</a></li>-->
@@ -72,13 +72,13 @@
                           <div class="collapse navbar-collapse w-100" id="navbarMain">
                                 <ul class="navbar-nav mb-2 mb-md-0 w-100">
                                       <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="#">Címlap</a>
+                                        <a class="nav-link" aria-current="page" href="/">Címlap</a>
                                       </li>
                                       <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="#">Keresés</a>
+                                        <a class="nav-link" aria-current="page" routerLink="books">Könyvek</a>
                                       </li>
                                       <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="#">Kölcsönzés</a>
+                                        <a class="nav-link" aria-current="page" href="#">Kölcsönzés menete</a>
                                       </li>
                                       <li class="nav-item">
                                         <a class="nav-link me-auto" aria-current="page" href="#">Referenciák</a>

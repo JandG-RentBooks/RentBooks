@@ -3,7 +3,6 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {BookService} from "../../../Services/Admin/book.service";
 import {SharedService} from "../../../Services/Admin/shared.service";
 import {environment} from "../../../../environments/environment";
-import {readBooleanType} from "@angular/compiler-cli/src/ngtsc/metadata/src/util";
 
 const IMAGE_URL = environment.imageUrl;
 
@@ -134,8 +133,6 @@ export class BookFormComponent implements OnInit {
     }
 
     onSubmit(): void {
-        console.log('onSubmit')
-        console.log(this.form.valid)
         if (this.form.valid) {
             this.selectedItem.id === null ? this.store() : this.update()
         }
