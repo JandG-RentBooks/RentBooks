@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../Services/storage.service";
 import {AuthService} from "../../../helper/auth.service";
 import {Router} from "@angular/router";
@@ -22,16 +22,50 @@ export class MyDataComponent {
         c_password: new FormControl('', [Validators.minLength(8)]),
     })
 
-    //Szállítási címek
-    formAddresses = new FormGroup({
-        zip_code: new FormControl('', [Validators.required]),
-        city: new FormControl('', [Validators.required]),
-        address: new FormControl('', [Validators.required]),
-    })
+    userData: any = []
+
+    constructor(private profileService: ProfileService, private fb: FormBuilder, private sharedService: SharedService) {
+    }
+
+    ngOnInit(): void {
+        this.getData()
+    }
+
+    getData(): void {
+        this.profileService.getUser().subscribe({
+            next: data => {
+                console.log(data)
+                this.userData = data
+                this.form.patchValue({
+                    name: data.name,
+                    address: data.address,
+                    phone_number: data.phone_number,
+                })
+            },
+            error: err => {
+
+            }
+        })
+    }
 
     onSubmit(): void {
         if (!this.form.valid) {
             return
         }
+
+        this.sharedService.showPostCover()
+        this.profileService.updateUser(this.form.value).subscribe({
+            next: data => {
+                this.sharedService.hidePostCover()
+                if (data.success) {
+                    // @ts-ignore
+                    document.querySelector('.toast_-body').innerHTML = this.sharedService.texts.msg_update_success
+                    this.sharedService.openToast('SaveSuccessToast')
+                }
+            },
+            error: err => {
+                this.sharedService.hidePostCover()
+            }
+        })
     }
 }

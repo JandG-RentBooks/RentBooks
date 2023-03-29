@@ -21,7 +21,8 @@ export class RegisterComponent implements OnInit {
     hide = true;
 
     form = new FormGroup({
-        name: new FormControl('', [Validators.required]),
+        username: new FormControl('', [Validators.required, Validators.minLength(3)]),
+        name: new FormControl('', [Validators.required, Validators.minLength(3)]),
         address: new FormControl('', [Validators.required]),
         phone_number: new FormControl(''),
         email: new FormControl('', [Validators.required, Validators.email]),

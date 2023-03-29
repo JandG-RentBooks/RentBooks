@@ -23,7 +23,7 @@ export class AuthorService {
     }
 
     index(params: any): Observable<any> {
-        this.httpOptions.params = {page_length: params.perPage, search: params.searchValue,}
+        this.httpOptions.params = {page_length: params.perPage, search: params.searchValue}
         return this.http.get(params.url,
             this.httpOptions
         );
@@ -57,7 +57,6 @@ export class AuthorService {
 
     store(data: any): Observable<any> {
         this.httpOptions.params = {}
-        console.log(data)
         return this.http.post(
             API_URL + 'admin/author',
             {
@@ -70,7 +69,6 @@ export class AuthorService {
 
     update(data: any, id: number): Observable<any> {
         this.httpOptions.params = {}
-        console.log(data)
         return this.http.patch(
             API_URL + `admin/author/${id}`,
             {

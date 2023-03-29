@@ -43,6 +43,7 @@ Route::get('last-rented', [HomeController::class, 'getLastRented']);
 Route::get('books', [\App\Http\Controllers\BookController::class, 'index']);
 Route::get('books/{book}', [\App\Http\Controllers\BookController::class, 'details']);
 Route::get('book-categories', [\App\Http\Controllers\BookController::class, 'getCategories']);
+Route::get('company', [HomeController::class, 'getCompany']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [RegisterController::class, 'logout']);
@@ -64,18 +65,56 @@ Route::middleware('auth:sanctum')->group(function () {
 
         //Dashboard
         Route::get('dashboard', [DashboardController::class, 'index']);
+        Route::get('dashboard/stat-cards-data', [DashboardController::class, 'getStatCardsData']);
+        Route::get('dashboard/active-lendings', [DashboardController::class, 'getActiveLendings']);
+        Route::get('dashboard/lending/{id}', [DashboardController::class, 'getLending']);
+        Route::get('dashboard/user-by-payment-id', [DashboardController::class, 'getUserByPaymentId']);
+        Route::patch('dashboard/update-last-payment-date', [ProfileController::class, 'updateLastPaymentDate']);
+
+        Route::get('dashboard/relevant-users', [DashboardController::class, 'getRelevantUsers']);
+        Route::get('dashboard/user/{id}', [DashboardController::class, 'getUser']);
+        Route::post('dashboard/lending', [DashboardController::class, 'storeLending']);
+        Route::post('dashboard/lending/add-book', [DashboardController::class, 'addBookToLending']);
+        Route::post('dashboard/lending/remove-book', [DashboardController::class, 'removeBook']);
+        Route::patch('dashboard/lending/set-state', [DashboardController::class, 'updateLendingState']);
+
+        Route::get('dashboard/lending-by-shipping-token', [DashboardController::class, 'getLandingByShippingToken']);
+        Route::patch('dashboard/book/scrapping', [DashboardController::class, 'bookScrapping']);
+        Route::patch('dashboard/book/increase-available-number', [DashboardController::class, 'increaseBookAvailableNumber']);
+        Route::patch('dashboard/close-lending', [DashboardController::class, 'closeLending']);
+
 
         //ImageStorage
         Route::resource('image-storage', ImageStorageController::class)->only(['index', 'store', 'destroy']);
     });
 
     Route::middleware('can:accessUser')->group(function () {
-        //Profile
+        //Profile User data
         Route::get('profile/user', [ProfileController::class, 'getUser']);
+        Route::patch('profile/user', [ProfileController::class, 'updateUser']);
+
+        //Profile Shipping Address
+        Route::get('profile/shipping-address', [ProfileController::class, 'getShippingAddresses']);
+        Route::post('profile/shipping-address', [ProfileController::class, 'storeShippingAddress']);
+        Route::patch('profile/shipping-address', [ProfileController::class, 'updateActiveShippingAddress']);
+        Route::patch('profile/shipping-address/{id}', [ProfileController::class, 'updateShippingAddress']);
+        Route::delete('profile/shipping-address/{id}', [ProfileController::class, 'removeShippingAddress']);
+
+        //Profile Subscriptions
+        Route::get('profile/subscriptions', [ProfileController::class, 'getSubscriptions']);
+        Route::patch('profile/subscription', [ProfileController::class, 'updateActiveSubscription']);
+
+        //Profile Lending
+        Route::get('profile/lending', [ProfileController::class, 'getLending']);
+        Route::get('profile/lending/history', [ProfileController::class, 'getLendingHistory']);
+
+        //Profile Wishlist
         Route::get('profile/wishlist', [ProfileController::class, 'getWishlist']);
         Route::patch('profile/wishlist', [ProfileController::class, 'sortWishlist']);
         Route::post('profile/wishlist/delete', [ProfileController::class, 'removeWisList']);
-        //Wishlist
+
+
+        //Book-Wishlist
         Route::post('books/{book}/wishlist', [\App\Http\Controllers\BookController::class, 'changeWisListStatus']);
         Route::get('books/{book}/wishlist', [\App\Http\Controllers\BookController::class, 'checkWisListStatus']);
     });

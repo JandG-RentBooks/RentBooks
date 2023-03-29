@@ -84,6 +84,12 @@ import {MatListModule} from "@angular/material/list";
 import { SubscriptionInformationComponent } from './Front/profile/subscription-information/subscription-information.component';
 import {CdkDrag, CdkDragPlaceholder, CdkDropList} from "@angular/cdk/drag-drop";
 import {MatTabsModule} from "@angular/material/tabs";
+import { AddressesComponent } from './Front/profile/addresses/addresses.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import { StatCardsComponent } from './Admin/dashboard/stat-cards/stat-cards.component';
+import { ActiveLendingsComponent } from './Admin/dashboard/active-lendings/active-lendings.component';
+import { BankTransferComponent } from './Admin/dashboard/bank-transfer/bank-transfer.component';
+import { ReceivedPackagesComponent } from './Admin/dashboard/received-packages/received-packages.component';
 
 
 @NgModule({
@@ -144,6 +150,11 @@ import {MatTabsModule} from "@angular/material/tabs";
         WishlistComponent,
         ErrorLoginComponent,
         SubscriptionInformationComponent,
+        AddressesComponent,
+        StatCardsComponent,
+        ActiveLendingsComponent,
+        BankTransferComponent,
+        ReceivedPackagesComponent,
     ],
     imports: [
         BrowserModule,
@@ -176,6 +187,7 @@ import {MatTabsModule} from "@angular/material/tabs";
         CdkDrag,
         CdkDragPlaceholder,
         MatTabsModule,
+        MatSidenavModule,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

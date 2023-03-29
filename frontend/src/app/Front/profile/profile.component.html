@@ -10,6 +10,7 @@
                 <button (click)="setVisibility('showRentHistory', $event)" type="button" class="list-group-item list-group-item-action">Kölcsönzés történet</button>
                 <button (click)="setVisibility('showSubscriptionInformation', $event)" type="button" class="list-group-item list-group-item-action">Előfizetési információk</button>
                 <button (click)="setVisibility('showData', $event)" type="button" class="list-group-item list-group-item-action">Személyes adataim</button>
+                <button (click)="setVisibility('showAddresses', $event)" type="button" class="list-group-item list-group-item-action">Szállítási címek</button>
             </div>
         </div>
         <div class="action-container col-lg-9">
@@ -18,6 +19,7 @@
             <app-my-data *ngIf="visibilityOptions.showData"></app-my-data>
             <app-my-current-rent *ngIf="visibilityOptions.showCurrentRent"></app-my-current-rent>
             <app-subscription-information *ngIf="visibilityOptions.showSubscriptionInformation"></app-subscription-information>
+            <app-addresses *ngIf="visibilityOptions.showAddresses"></app-addresses>
         </div>
     </div>
 </div>

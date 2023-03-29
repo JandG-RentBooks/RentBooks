@@ -1,5 +1,5 @@
-<div class="image-container">
-    <div class="inner">
+<div class="image-container pb-5">
+    <div class="inner pb-5">
         <div class="header mb-2">
             <span class="title">Képgaléria</span>
             <span class="close" (click)="close()"></span>
@@ -12,7 +12,7 @@
                     <span *ngIf="isSearch" (click)="searchReset()" class="btn-reset d-inline-block"></span>
                 </div>
         </span>
-        <div class="content pb-3">
+        <div class="content pb-5">
             <div class="gallery">
                 <div class="row">
                     <div *ngFor="let image of mainCollection" class="col-md-2 mb-3">

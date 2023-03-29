@@ -3,6 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthService} from "./helper/auth.service";
 import {AuthGuard} from "./helper/auth.guard";
 import {AdminGuard} from "./helper/role/admin.guard";
+import {EmployeeGuard} from "./helper/role/employee.guard";
+import {UserGuard} from "./helper/role/user.guard";
 import {IndexComponent} from "./index/index.component";
 import {ErrorNotFoundComponent} from "./Errors/error-not-found/error-not-found.component";
 import {DashboardComponent} from "./Admin/dashboard/dashboard.component";
@@ -48,7 +50,8 @@ const routes: Routes = [
     {
         path: "profile",
         title: 'Adataim',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthGuard, UserGuard]
     },
 
     {
@@ -56,7 +59,7 @@ const routes: Routes = [
         data: {breadcrumb: {alias: 'Dashboard'}},
         title: 'Dashboard',
         component: DashboardComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, EmployeeGuard]
     },
     {
         path: "admin/users",
@@ -70,56 +73,56 @@ const routes: Routes = [
         title: 'Szerzők',
         data: {breadcrumb: {alias: 'Szerzők'}},
         component: AuthorComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, EmployeeGuard]
     },
     {
         path: "admin/books",
         title: 'Könyvek',
         data: {breadcrumb: {alias: 'Könyvek'}},
         component: BookComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, EmployeeGuard]
     },
     {
         path: "admin/categories",
         title: 'Kategóriák',
         data: {breadcrumb: {alias: 'Kategóriák'}},
         component: CategoryComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, EmployeeGuard]
     },
     {
         path: "admin/cover-types",
         title: 'Borító típusok',
         data: {breadcrumb: {alias: 'Borító típusok'}},
         component: CoverTypeComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, EmployeeGuard]
     },
     {
         path: "admin/labels",
         title: 'Cimkék',
         data: {breadcrumb: {alias: 'Cimkék'}},
         component: LabelComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, EmployeeGuard]
     },
     {
         path: "admin/publishers",
         title: 'Kiadók',
         data: {breadcrumb: {alias: 'Kiadók'}},
         component: PublisherComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, EmployeeGuard]
     },
     {
         path: "admin/image-storage",
         title: 'Médiatár',
         data: {breadcrumb: {alias: 'Médiatár'}},
         component: ImageStorageComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, EmployeeGuard]
     },
     {
         path: "admin/subscription-type",
         title: 'Előfizetés típusok',
         data: {breadcrumb: {alias: 'Előfizetés típusok\''}},
         component: SubscriptionTypeComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, EmployeeGuard]
     },
 
     {

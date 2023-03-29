@@ -7,6 +7,49 @@
 </div>
 
 <div class="admin-container pt-3">
-        <div class="action-panel"></div>
+    <div class="action-panel">
+        <mat-drawer-container class="__dashboard-mat-drawer-container" autosize>
+            <mat-drawer #drawer class="__dashboard-sidenav" mode="side">
+                <div class="list-group-dashboard">
+                    <button (click)="setVisibility('showWishList', $event)"
+                            type="button"
+                            class="list-group-item list-group-item-action active"
+                            aria-current="true">
+                        Aktív kölcsönzések
+                    </button>
+
+                    <button (click)="setVisibility('showWishList', $event)"
+                            type="button"
+                            class="list-group-item list-group-item-action"
+                            aria-current="true">
+                        Utalások kezelése
+                    </button>
+
+                    <button (click)="setVisibility('showWishList', $event)"
+                            type="button"
+                            class="list-group-item list-group-item-action"
+                            aria-current="true">
+                        Beérkezett csomagok kezelése
+                    </button>
+
+                </div>
+            </mat-drawer>
+
+            <div class="__dashboard-content">
+                <div *ngIf="!isSidebarOpen" (click)="openSidebar()" class="w-100 ps-2" role="button">
+                    <mat-icon color="accent">menu</mat-icon>
+                </div>
+                <div *ngIf="isSidebarOpen" (click)="openSidebar()" class="w-100 ps-2" role="button">
+                    <mat-icon color="accent">close</mat-icon>
+                </div>
+                <app-stat-cards></app-stat-cards>
+                <div class="work-container">
+
+                </div>
+            </div>
+
+        </mat-drawer-container>
+
+    </div>
 </div>
 

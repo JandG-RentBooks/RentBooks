@@ -37,6 +37,7 @@ export class LoginService {
             API_URL + 'register',
             {
                 name: data.name,
+                username: data.username,
                 email: data.email,
                 address: data.address,
                 phone_number: data.phone_number,

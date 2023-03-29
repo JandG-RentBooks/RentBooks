@@ -57,9 +57,9 @@ export class HeaderComponent implements OnInit {
 
             this.showAdminLink = this.authService.isAdmin() || this.authService.isEmployee()
 
-            this.showAdminMenu = location.href.split('/').includes('admin')
+            this.showAdminMenu = location.href.split('/').includes('admin') && this.showAdminLink
             this.showLogoutLink = true
-            this.showProfileLink = true
+            this.showProfileLink = this.authService.isUser()
 
             this.userName = this.authService.getUserName()
             if (this.showAdminMenu) {
@@ -73,8 +73,6 @@ export class HeaderComponent implements OnInit {
                                 return item
                             }
                         })
-                        console.log('lastItem')
-                        console.log(lastItem)
                         this.items = [
                             {label: `${url[1]}`},
                             {label: `${lastItem[0].name}`},

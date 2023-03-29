@@ -18,6 +18,8 @@ return new class extends Migration
 
             $table->string('payment_id', 8)->nullable()->unique();
 
+            $table->string('username');
+
             $table->string('name');
 
             $table->string('email')->unique();

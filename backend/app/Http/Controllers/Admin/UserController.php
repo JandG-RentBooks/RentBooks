@@ -20,7 +20,6 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        // Todo A filtert még ki kell dolgozni
 
         $query = User::query();
         $query->with('subscription_type')
@@ -50,7 +49,7 @@ class UserController extends Controller
         $this->onlyAdmin();
 
         //Felhasználó létrehozásához szükséges adatok
-        //User nem hozható létre
+        //User szerepkörrel nem hozható létre
         $data['roles'] = Role::where('reference', '<>', 'user')->get();
         return response()->json($data, 200);
     }
@@ -66,6 +65,7 @@ class UserController extends Controller
         $this->onlyAdmin();
 
         $validator = Validator::make($request->all(), [
+            'username' => 'required|string|min:3|max:255',
             'name' => 'required|string|min:3|max:255',
             'email' => 'required|string|email|unique:users|max:255',
             'password' => 'required|string|min:8|max:255',

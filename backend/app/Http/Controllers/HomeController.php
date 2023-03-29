@@ -8,6 +8,7 @@ use App\Models\CoverType;
 use App\Models\Label;
 use App\Models\Language;
 use App\Models\Publisher;
+use App\Models\SystemSetting;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -53,5 +54,10 @@ class HomeController extends Controller
         $result = [];
 
         return response()->json($result, 200);
+    }
+
+    public function getCompany(Request $request): JsonResponse
+    {
+        return response()->json(SystemSetting::select('company_name')->first(), 200);
     }
 }

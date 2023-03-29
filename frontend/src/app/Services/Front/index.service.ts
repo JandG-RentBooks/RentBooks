@@ -27,4 +27,11 @@ export class IndexService {
         );
     }
 
+    getCompany(): Observable<any> {
+        return this.http.get(
+            API_URL + 'company',
+            this.httpOptions
+        );
+    }
+
 }

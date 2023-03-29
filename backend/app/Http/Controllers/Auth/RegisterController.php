@@ -27,6 +27,7 @@ class RegisterController extends BaseController
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'username' => 'required|max:255',
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|min:8',
@@ -75,7 +76,7 @@ class RegisterController extends BaseController
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $success['token'] = $user->createToken('LandBooks')->plainTextToken;
-            $success['name'] = $user->name;
+            $success['name'] = $user->username;
             $success['roles'] = $user->roles->pluck('reference');
 
             return $this->sendResponse($success);

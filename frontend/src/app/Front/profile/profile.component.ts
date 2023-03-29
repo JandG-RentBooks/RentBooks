@@ -13,6 +13,7 @@ export class ProfileComponent {
         showRentHistory: false,
         showSubscriptionInformation: false,
         showData: false,
+        showAddresses: false,
     }
 
     setVisibility(v: string, e: any): void {

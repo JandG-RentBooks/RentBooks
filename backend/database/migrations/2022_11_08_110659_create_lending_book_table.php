@@ -28,6 +28,8 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
+            $table->boolean('is_back')->default(0);
+
             $table->timestamps();
         });
     }

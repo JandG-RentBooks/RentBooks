@@ -58,6 +58,11 @@ Admin
     height: 36px !important;
 }
 
+.table-striped>tbody>tr:nth-child(1n)>td,
+.table-striped>tbody>tr:nth-child(1n)>th {
+    background-color: #f7f7f7;
+}
+
 .table-striped>tbody>tr:nth-child(2n)>td,
 .table-striped>tbody>tr:nth-child(2n)>th {
     background-color: #f7f7f7;

@@ -61,6 +61,7 @@ export class UserService {
         return this.http.post(
             API_URL + 'admin/user',
             {
+                username: data.username,
                 name: data.name,
                 email: data.email,
                 password: data.password,

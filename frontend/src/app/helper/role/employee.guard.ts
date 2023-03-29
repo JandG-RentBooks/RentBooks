@@ -11,7 +11,7 @@ export class EmployeeGuard implements CanActivate {
 
     // @ts-ignore
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        if (this.authService.isEmployee()) {
+        if (this.authService.isEmployee() || this.authService.isAdmin()) {
             return true
         } else {
             if (this.authService.isAuthenticated()) {

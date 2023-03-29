@@ -31,6 +31,7 @@ export class UserFormComponent implements OnInit {
     ]
 
     form = new FormGroup({
+        username: new FormControl('', [Validators.required, Validators.minLength(3)]),
         name: new FormControl('', [Validators.required, Validators.minLength(3)]),
         email: new FormControl('', [Validators.required, Validators.email]),
         address: new FormControl(''),
@@ -73,6 +74,7 @@ export class UserFormComponent implements OnInit {
             next: data => {
                 console.log(data)
                 this.form.patchValue({
+                    username: data.user[0].username,
                     name: data.user[0].name,
                     email: data.user[0].email,
                     address: data.user[0].address,

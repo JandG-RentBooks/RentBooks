@@ -25,7 +25,7 @@ return new class extends Migration
 
             $table->string('shipping_token', 12)->unique();
 
-            $table->boolean('is_active')->default(1);
+            $table->unsignedTinyInteger('state');
 
             $table->foreignId('created_by')
                 ->nullable()

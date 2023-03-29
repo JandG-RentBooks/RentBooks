@@ -48,12 +48,12 @@
             <th>Példányszám</th>
             <th>Létrehozva</th>
             <th>Módosítva</th>
-            <th colspan="3" class="text-center">Műveletek</th>
+            <th colspan="2" class="text-center">Műveletek</th>
         </tr>
         <tr class="spacer"></tr>
         </thead>
 
-        <tbody class="bg-white">
+        <tbody class="bg-white-">
         <tr *ngFor="let row of mainCollection">
             <td>{{ row.id }}</td>
             <td>{{ row.title }}</td>
@@ -70,10 +70,10 @@
                       matTooltipPosition="left" matTooltipClass="" (click)="openEdit(row.id, row.title)"></span>
             </td>
 
-            <td class="text-center">
-                <span class="btn-action table-btn-open d-inline-block" matTooltip="Részletek megtekintése"
-                      matTooltipPosition="left" matTooltipClass="" (click)="openDetails(row.id, row.title)"></span>
-            </td>
+<!--            <td class="text-center">-->
+<!--                <span class="btn-action table-btn-open d-inline-block" matTooltip="Részletek megtekintése"-->
+<!--                      matTooltipPosition="left" matTooltipClass="" (click)="openDetails(row.id, row.title)"></span>-->
+<!--            </td>-->
 
             <td class="text-center">
                 <span *ngIf="row.can_delete" class="btn-action table-btn-delete d-inline-block" matTooltip="Tétel törlése"
